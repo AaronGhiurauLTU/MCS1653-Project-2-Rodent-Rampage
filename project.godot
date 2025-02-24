@@ -12,17 +12,25 @@ config_version=5
 
 config/name="Rodent-Rampage"
 run/main_scene="res://Scenes/Level.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/stretch/mode="viewport"
+window/stretch/scale=0.5
 
 [dotnet]
 
 project/assembly_name="Rodent-Rampage"
+
+[layer_names]
+
+2d_physics/layer_1="Background"
+2d_physics/layer_2="Path"
+2d_physics/layer_3="PlacedTower"
 
 [rendering]
 
