@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://0d3f354e7xr1"]
+
+[ext_resource type="Texture2D" uid="uid://bqrmne7jswow7" path="res://Sprites/grid.png" id="1_dpn4p"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(40, 40)
+texture = ExtResource("1_dpn4p")
