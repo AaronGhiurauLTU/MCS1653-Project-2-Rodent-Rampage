@@ -11,10 +11,10 @@ public partial class EnemySpawner : Node2D
 	public override void _Ready()
 	{
 		int i = 0;
-		nodeCount = GetNode<Node2D>("%PathfindingNodes").GetChildCount();
+		nodeCount = GetNode<Node2D>("PathfindingNodes").GetChildCount();
 		pathfindingNodes = new Vector2[nodeCount];
 
-		foreach (Node node in GetNode<Node2D>("%PathfindingNodes").GetChildren())
+		foreach (Node node in GetNode<Node2D>("PathfindingNodes").GetChildren())
 		{
 			pathfindingNodes[i] = ((Node2D)node).Position;
 			i++;
@@ -25,10 +25,9 @@ public partial class EnemySpawner : Node2D
 
 	private void OnNextEnemyTimeout()
 	{
-		var instance = (Enemy)scene.Instantiate();
+		Enemy instance = (Enemy)scene.Instantiate();
 		instance.enemySpawner = this;
 		AddChild(instance);
-		nextEnemyTimer.Start();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

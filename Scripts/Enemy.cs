@@ -36,4 +36,19 @@ public partial class Enemy : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
+	// calculate the distance till the end of the path
+	public float GetDistanceTillEnd()
+	{
+		Vector2 currentPosition = Position;
+		float totalDistance = 0;
+		
+		for (int i = currentNodeIndex; i < enemySpawner.nodeCount; i++)
+		{
+			totalDistance += (currentPosition - enemySpawner.pathfindingNodes[i]).Length();
+			currentPosition = enemySpawner.pathfindingNodes[i];
+		}
+
+		return totalDistance;
+	}
 }

@@ -22,6 +22,8 @@ texture_region_size = Vector2i(160, 160)
 0:1/0/custom_data_0 = "Enemy"
 4:4/0 = 0
 4:4/0/custom_data_0 = "Placeable"
+3:4/0 = 0
+3:4/0/custom_data_0 = "NotPlaceable"
 
 [sub_resource type="TileSet" id="TileSet_81ni4"]
 tile_size = Vector2i(160, 160)
@@ -67,7 +69,6 @@ towerSelectMenu = NodePath("../TowerSelectMenu")
 position = Vector2(207, 13)
 
 [node name="PathfindingNodes" type="Node2D" parent="EnemySpawner"]
-unique_name_in_owner = true
 
 [node name="0" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
 position = Vector2(-5, 16)

@@ -15,6 +15,10 @@ public partial class GameManager : Node2D
 
 	private string placeableTiles = "Placeable";
 
+	private string catScenePath = "res://Scenes/Cat.tscn";
+
+	private PackedScene catScene;
+
 	private enum State
 	{
 		placing,
@@ -89,6 +93,8 @@ public partial class GameManager : Node2D
 		ChangeState(State.placing);
 		towerSelectMenu.TowerSelectionCancelled += TowerSelectionCancelled;
 		towerSelectMenu.TowerPlaced += TowerPlaced;
+
+		catScene = GD.Load<PackedScene>(catScenePath);
 	}
 
 	private void TowerSelectionCancelled()
@@ -98,16 +104,23 @@ public partial class GameManager : Node2D
 
 	private void TowerPlaced(string towerName)
 	{
+		// the position for the tower
+		Vector2 position = (tileMap.MapToLocal((Vector2I)currentTileCoordinates) * tileMap.Scale.X / 2) + tileMap.GetParent<Node2D>().Position;
+
 		switch (towerName)
 		{
 		case "tower1":
+			var instance = (Node2D)catScene.Instantiate();
+			instance.Position = position;
+			AddChild(instance);
 			GD.Print("tower 1");
-			tileMap.SetCell((Vector2I)currentTileCoordinates, 1,  new Vector2I(4, 0));
 			break;
 		case "tower2":
 			GD.Print("tower 2");
 			break;
 		}
+
+		tileMap.SetCell((Vector2I)currentTileCoordinates, 1,  new Vector2I(3, 4));
 
 		currentTileCoordinates = null;
 		currentTileAtlasCoordinates = null;
@@ -120,7 +133,6 @@ public partial class GameManager : Node2D
 	{
 		if (currentState != State.placing)
 		{
-			//GD.Print("exiting");
 			return;
 		}
 

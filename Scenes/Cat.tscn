@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqwwe10u0u2sb"]
+
+[ext_resource type="Texture2D" uid="uid://ckmgb3x2cny1h" path="res://Sprites/tilemap.png" id="1_0cye1"]
+[ext_resource type="Script" path="res://Scripts/Cat.cs" id="2_xg80j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sm4s"]
+atlas = ExtResource("1_0cye1")
+region = Rect2(640, 0, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ocvnk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sm4s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_atbjg"]
+
+[node name="Cat" type="AnimatedSprite2D"]
+z_index = 4
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ocvnk")
+script = ExtResource("2_xg80j")
+rotationSpeed = 8.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(25, 25)
+shape = SubResource("CircleShape2D_atbjg")
+
+[connection signal="body_entered" from="Area2D" to="." method="OnRangeEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="OnRangeExited"]
