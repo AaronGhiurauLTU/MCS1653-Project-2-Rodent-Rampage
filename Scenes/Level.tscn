@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://0d3f354e7xr1"]
+[gd_scene load_steps=7 format=4 uid="uid://0d3f354e7xr1"]
 
 [ext_resource type="Texture2D" uid="uid://ckmgb3x2cny1h" path="res://Sprites/tilemap.png" id="2_ammx6"]
 [ext_resource type="PackedScene" uid="uid://6a4o37635tsy" path="res://Scenes/TowerSelectMenu.tscn" id="2_nxtxe"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="3_ru48m"]
+[ext_resource type="PackedScene" uid="uid://ijf20yj6w2wm" path="res://Scenes/EnemySpawner.tscn" id="4_04na6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ise3"]
 texture = ExtResource("2_ammx6")
@@ -61,3 +62,57 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("3_ru48m")
 tileMap = NodePath("../VisibleLevel/TileMaps/Foreground")
 towerSelectMenu = NodePath("../TowerSelectMenu")
+
+[node name="EnemySpawner" parent="." instance=ExtResource("4_04na6")]
+position = Vector2(207, 13)
+
+[node name="PathfindingNodes" type="Node2D" parent="EnemySpawner"]
+unique_name_in_owner = true
+
+[node name="0" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(-5, 16)
+
+[node name="1" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(-2, 366)
+
+[node name="2" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(38, 398)
+
+[node name="3" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(193, 406)
+
+[node name="4" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(233, 371)
+
+[node name="5" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(233, 203)
+
+[node name="6" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(273, 166)
+
+[node name="7" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(428, 163)
+
+[node name="8" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(471, 200)
+
+[node name="9" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(471, 363)
+
+[node name="10" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(514, 403)
+
+[node name="11" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(602, 403)
+
+[node name="12" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(629, 368)
+
+[node name="13" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(634, 280)
+
+[node name="14" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(674, 243)
+
+[node name="End" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
+position = Vector2(773, 243)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ijf20yj6w2wm"]
+
+[ext_resource type="Script" path="res://EnemySpawner.cs" id="1_eip23"]
+
+[node name="EnemySpawner" type="Node2D" node_paths=PackedStringArray("nextEnemyTimer")]
+script = ExtResource("1_eip23")
+nextEnemyTimer = NodePath("NextEnemyTimer")
+
+[node name="NextEnemyTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="NextEnemyTimer" to="." method="OnNextEnemyTimeout"]

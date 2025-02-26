@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7ractxv7nfq3"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy.cs" id="1_ixq3y"]
+[ext_resource type="Texture2D" uid="uid://ckmgb3x2cny1h" path="res://Sprites/tilemap.png" id="1_jjknt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h2fig"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1r8m"]
+atlas = ExtResource("1_jjknt")
+region = Rect2(0, 160, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v2342"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1r8m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Mouse" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite")]
+z_index = 5
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ixq3y")
+animatedSprite = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h2fig")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v2342")
