@@ -88,10 +88,30 @@ public partial class GameManager : Node2D
 	{
 		ChangeState(State.placing);
 		towerSelectMenu.TowerSelectionCancelled += TowerSelectionCancelled;
+		towerSelectMenu.TowerPlaced += TowerPlaced;
 	}
 
 	private void TowerSelectionCancelled()
 	{
+		ChangeState(State.placing);
+	}
+
+	private void TowerPlaced(string towerName)
+	{
+		switch (towerName)
+		{
+		case "tower1":
+			GD.Print("tower 1");
+			tileMap.SetCell((Vector2I)currentTileCoordinates, 1,  new Vector2I(4, 0));
+			break;
+		case "tower2":
+			GD.Print("tower 2");
+			break;
+		}
+
+		currentTileCoordinates = null;
+		currentTileAtlasCoordinates = null;
+
 		ChangeState(State.placing);
 	}
 

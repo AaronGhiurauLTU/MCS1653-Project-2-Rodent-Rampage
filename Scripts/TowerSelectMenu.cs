@@ -4,19 +4,10 @@ using System;
 public partial class TowerSelectMenu : Control
 {
 	[Signal] public delegate void TowerSelectionCancelledEventHandler();
+	[Signal] public delegate void TowerPlacedEventHandler(string towerName);
 	private void OnTowerSelected(string towerName)
 	{
-		switch (towerName)
-		{
-		case "tower1":
-			GD.Print("tower 1");
-			break;
-		case "tower2":
-			GD.Print("tower 2");
-			break;
-		default:
-			break;
-		}
+		EmitSignal(SignalName.TowerPlaced, towerName);
 	}
 
 	private void OnCancelPressed()
