@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dqwwe10u0u2sb"]
 
-[ext_resource type="Texture2D" uid="uid://ckmgb3x2cny1h" path="res://Sprites/tilemap.png" id="1_0cye1"]
+[ext_resource type="Texture2D" uid="uid://diq720lfc0uxe" path="res://Sprites/tilemap.png" id="1_0cye1"]
 [ext_resource type="Script" path="res://Scripts/Cat.cs" id="2_xg80j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5sm4s"]
@@ -25,7 +25,6 @@ z_index = 4
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ocvnk")
 script = ExtResource("2_xg80j")
-rotationSpeed = 8.0
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2

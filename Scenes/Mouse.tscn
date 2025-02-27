@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7ractxv7nfq3"]
+[gd_scene load_steps=7 format=3 uid="uid://b7ractxv7nfq3"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ixq3y"]
-[ext_resource type="Texture2D" uid="uid://ckmgb3x2cny1h" path="res://Sprites/tilemap.png" id="1_jjknt"]
+[ext_resource type="Texture2D" uid="uid://diq720lfc0uxe" path="res://Sprites/tilemap.png" id="1_jjknt"]
+[ext_resource type="PackedScene" uid="uid://boct4lmy8le45" path="res://Scenes/healthBar.tscn" id="3_44u51"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2fig"]
 
@@ -20,16 +21,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Mouse" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite")]
+[node name="Mouse" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite", "healthBar")]
 z_index = 5
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
 script = ExtResource("1_ixq3y")
-Speed = 50.0
 animatedSprite = NodePath("AnimatedSprite2D")
+healthBar = NodePath("HealthBar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_h2fig")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v2342")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_44u51")]
+offset_left = -48.0
+offset_top = -92.0
+offset_right = 51.0
+offset_bottom = -69.0

@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 public partial class Tower : Node2D
 {
-	[Export] private float rotationSpeed = 0.04f;
+	[Export] private bool rotateTowardsEnemies = true;
+	[Export] private float rotationSpeed = 7f;
 	private HashSet<Enemy> enemiesInRange = new();
 	protected Enemy firstEnemy = null;
 	private void OnRangeEntered(Node2D body)
@@ -35,6 +36,7 @@ public partial class Tower : Node2D
 
 		foreach (Enemy enemy in enemiesInRange)
 		{
+			// can later optimize by skipping enemies that have more nodes remaining to avoid the need to sum the distances
 			float currentEnemyDistanceToEnd = enemy.GetDistanceTillEnd();
 
 			if (shortestDistanceToEnd > currentEnemyDistanceToEnd)
@@ -63,7 +65,7 @@ public partial class Tower : Node2D
 	{
 		RecalculateFirstEnemy();
 
-		if (firstEnemy != null)
+		if (firstEnemy != null && rotateTowardsEnemies)
 		{
 
 			float targetAngle = Mathf.RadToDeg((firstEnemy.GetParent<Node2D>().ToGlobal(firstEnemy.Position) - Position).Angle());
