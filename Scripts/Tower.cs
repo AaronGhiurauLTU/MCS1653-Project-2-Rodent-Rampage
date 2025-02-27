@@ -5,8 +5,10 @@ public partial class Tower : Node2D
 {
 	[Export] private bool rotateTowardsEnemies = true;
 	[Export] private float rotationSpeed = 7f;
+	[Export] private Timer attackCooldownTimer;
 	private HashSet<Enemy> enemiesInRange = new();
 	protected Enemy firstEnemy = null;
+	protected bool canAttack = true;
 	private void OnRangeEntered(Node2D body)
 	{
 		if (body is Enemy enemy)
@@ -67,15 +69,28 @@ public partial class Tower : Node2D
 
 		if (firstEnemy != null && rotateTowardsEnemies)
 		{
+			float unformattedAngle = Mathf.RadToDeg((firstEnemy.GetParent<Node2D>().ToGlobal(firstEnemy.Position) - Position).Angle());
+			float targetAngle = unformattedAngle;
 
-			float targetAngle = Mathf.RadToDeg((firstEnemy.GetParent<Node2D>().ToGlobal(firstEnemy.Position) - Position).Angle());
-
+			// TODO: make it adjust the angle to whatever is closer so it doesn't rotation fully for something negative if the angle is currently positive and vice versa
 			if (targetAngle < 0)
 			{
 				targetAngle = 360 + targetAngle;
 			}
 
 			RotationDegrees = Mathf.MoveToward(RotationDegrees < 0 ? 360 + RotationDegrees : RotationDegrees, targetAngle, rotationSpeed);
+
+			if (Math.Abs(unformattedAngle - RotationDegrees) < 5 && canAttack)
+			{
+				canAttack = false;
+				Attack();
+				attackCooldownTimer.Start();
+			}
 		}
+	}
+
+	private void OnAttackCooldownTimeout()
+	{
+		canAttack = true;
 	}
 }

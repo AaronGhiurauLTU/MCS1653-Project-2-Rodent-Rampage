@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqwwe10u0u2sb"]
+[gd_scene load_steps=13 format=3 uid="uid://dqwwe10u0u2sb"]
 
 [ext_resource type="Texture2D" uid="uid://diq720lfc0uxe" path="res://Sprites/tilemap.png" id="1_0cye1"]
 [ext_resource type="Script" path="res://Scripts/Cat.cs" id="2_xg80j"]
+[ext_resource type="PackedScene" uid="uid://cy16leeudh217" path="res://Scenes/DamageArea.tscn" id="3_hf6fc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5sm4s"]
 atlas = ExtResource("1_0cye1")
@@ -18,20 +19,123 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpk6p"]
+size = Vector2(238, 292)
+
+[sub_resource type="Animation" id="Animation_c4eo4"]
+resource_name = "Attack"
+length = 0.2667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageArea/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageArea/AnimatedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_yf0vc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageArea/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageArea/AnimatedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wdlsd"]
+_data = {
+"Attack": SubResource("Animation_c4eo4"),
+"RESET": SubResource("Animation_yf0vc")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndk7h"]
+atlas = ExtResource("1_0cye1")
+region = Rect2(160, 160, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u3ul1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndk7h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_atbjg"]
 
-[node name="Cat" type="AnimatedSprite2D"]
+[node name="Cat" type="AnimatedSprite2D" node_paths=PackedStringArray("attackAnimationPlayer", "attackCooldownTimer")]
 z_index = 4
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ocvnk")
 script = ExtResource("2_xg80j")
+attackAnimationPlayer = NodePath("DamageArea/AttackAnimationPlayer")
+attackCooldownTimer = NodePath("AttackCooldown")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DamageArea" parent="." instance=ExtResource("3_hf6fc")]
+position = Vector2(136, -2)
+
+[node name="CollisionShape2D" parent="DamageArea" index="0"]
+shape = SubResource("RectangleShape2D_dpk6p")
+disabled = true
+
+[node name="AttackAnimationPlayer" type="AnimationPlayer" parent="DamageArea"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_wdlsd")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DamageArea"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_u3ul1")
+
+[node name="DetectionRadius" type="Area2D" parent="."]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
 scale = Vector2(25, 25)
 shape = SubResource("CircleShape2D_atbjg")
 
-[connection signal="body_entered" from="Area2D" to="." method="OnRangeEntered"]
-[connection signal="body_exited" from="Area2D" to="." method="OnRangeExited"]
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[connection signal="body_entered" from="DetectionRadius" to="." method="OnRangeEntered"]
+[connection signal="body_exited" from="DetectionRadius" to="." method="OnRangeExited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="OnAttackCooldownTimeout"]
+
+[editable path="DamageArea"]

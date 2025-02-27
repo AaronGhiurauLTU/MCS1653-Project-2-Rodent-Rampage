@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://0d3f354e7xr1"]
+[gd_scene load_steps=7 format=4 uid="uid://0d3f354e7xr1"]
 
 [ext_resource type="Texture2D" uid="uid://diq720lfc0uxe" path="res://Sprites/tilemap.png" id="2_ammx6"]
 [ext_resource type="PackedScene" uid="uid://6a4o37635tsy" path="res://Scenes/TowerSelectMenu.tscn" id="2_nxtxe"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="3_ru48m"]
 [ext_resource type="PackedScene" uid="uid://ijf20yj6w2wm" path="res://Scenes/EnemySpawner.tscn" id="4_04na6"]
-[ext_resource type="PackedScene" uid="uid://cy16leeudh217" path="res://Scenes/DamageArea.tscn" id="5_xwodo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ise3"]
 texture = ExtResource("2_ammx6")
@@ -31,8 +30,6 @@ tile_size = Vector2i(160, 160)
 custom_data_layer_0/name = "Name"
 custom_data_layer_0/type = 4
 sources/1 = SubResource("TileSetAtlasSource_4ise3")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ltwdi"]
 
 [node name="Level" type="Node2D"]
 
@@ -120,12 +117,3 @@ position = Vector2(674, 243)
 
 [node name="End" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
 position = Vector2(773, 243)
-
-[node name="DamageArea" parent="." instance=ExtResource("5_xwodo")]
-position = Vector2(203, 204)
-
-[node name="CollisionShape2D" parent="DamageArea" index="0"]
-scale = Vector2(5, 5)
-shape = SubResource("CircleShape2D_ltwdi")
-
-[editable path="DamageArea"]
