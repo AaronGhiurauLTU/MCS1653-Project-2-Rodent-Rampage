@@ -51,6 +51,7 @@ public partial class Tower : Node2D
 		firstEnemy = currentFirstEnemy;
 	}
 
+	// gets overridden by derived classes
 	protected virtual void Attack()
 	{
 
@@ -69,24 +70,77 @@ public partial class Tower : Node2D
 
 		if (firstEnemy != null && rotateTowardsEnemies)
 		{
-			float unformattedAngle = Mathf.RadToDeg((firstEnemy.GetParent<Node2D>().ToGlobal(firstEnemy.Position) - Position).Angle());
-			float targetAngle = unformattedAngle;
+			/* unadjusted represents angles between -180 to 180 degrees and adjusted represents angles between 0 and 360 degrees
+			 * what this code does is compares the adjusted versus unadjusted angles to select the pair of current and target rotations 
+			 * that have the smallest differences so the tower take the shortest path of rotation */
+			float unadjustedTargetRotation = Mathf.RadToDeg((firstEnemy.GetParent<Node2D>().ToGlobal(firstEnemy.Position) - Position).Angle());
+			
+			float adjustedTargetRotation = AdjustAngle(unadjustedTargetRotation);
 
-			// TODO: make it adjust the angle to whatever is closer so it doesn't rotation fully for something negative if the angle is currently positive and vice versa
-			if (targetAngle < 0)
-			{
-				targetAngle = 360 + targetAngle;
-			}
+			float unadjustedRotation = UnAdjustAngle(RotationDegrees);
 
-			RotationDegrees = Mathf.MoveToward(RotationDegrees < 0 ? 360 + RotationDegrees : RotationDegrees, targetAngle, rotationSpeed);
+			float adjustedRotation = AdjustAngle(RotationDegrees);
 
-			if (Math.Abs(unformattedAngle - RotationDegrees) < 5 && canAttack)
+			float currentTargetAngle = 0,
+				currentRotationAngle = 0, 
+				minimumAngleDifference = float.PositiveInfinity;
+
+			UpdateMinimumAngle(unadjustedTargetRotation, unadjustedRotation, ref minimumAngleDifference,
+				ref currentTargetAngle, ref currentRotationAngle);
+		
+			UpdateMinimumAngle(adjustedTargetRotation, unadjustedRotation, ref minimumAngleDifference,
+				ref currentTargetAngle, ref currentRotationAngle);
+			
+			UpdateMinimumAngle(unadjustedTargetRotation, adjustedRotation, ref minimumAngleDifference,
+				ref currentTargetAngle, ref currentRotationAngle);
+			
+			UpdateMinimumAngle(adjustedTargetRotation, adjustedRotation, ref minimumAngleDifference,
+				ref currentTargetAngle, ref currentRotationAngle);
+			
+			// rotate the tower by the rotation speed
+			RotationDegrees = Mathf.MoveToward(currentRotationAngle, currentTargetAngle, rotationSpeed);
+
+			// attack if the tower is facing the enemy enough and the attack is off cooldown
+			if (Math.Abs(currentRotationAngle - currentTargetAngle) < 5 && canAttack)
 			{
 				canAttack = false;
 				Attack();
 				attackCooldownTimer.Start();
 			}
 		}
+	}
+
+	private void UpdateMinimumAngle(float targetAngle, float rotation, ref float minimumAngleDifference, 
+		ref float currentTargetAngle, ref float currentRotationAngle)
+	{
+		float currentDifference = Math.Abs(targetAngle - rotation);
+
+		if (currentDifference < minimumAngleDifference)
+		{
+			minimumAngleDifference = currentDifference;
+			currentTargetAngle = targetAngle;
+			currentRotationAngle = rotation;
+		}
+	}
+
+	private float AdjustAngle(float angle)
+	{
+		if (angle < 0)
+		{
+			angle += 360;
+		}
+
+		return angle;
+	}
+
+	private float UnAdjustAngle(float angle)
+	{
+		if (angle > 180)
+		{
+			angle -= 360;
+		}
+		
+		return angle;
 	}
 
 	private void OnAttackCooldownTimeout()
