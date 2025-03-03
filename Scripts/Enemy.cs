@@ -44,8 +44,13 @@ public partial class Enemy : CharacterBody2D
 			}
 			else
 			{
-				//GD.Print("reached end");
-				QueueFree();
+				var cheese = enemySpawner.GetNode<AnimatedSprite2D>("%Cheese");
+				cheese?.QueueFree();
+				Engine.TimeScale = 0.0;
+				
+				enemySpawner.GetNode<GameManager>("%GameManager").gameOverMenu.Visible = true;
+
+				//QueueFree();
 			}
 		}
 		

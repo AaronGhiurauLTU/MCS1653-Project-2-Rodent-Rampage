@@ -6,6 +6,7 @@ public partial class GameManager : Node2D
 {
 	[Export] private TileMapLayer tileMap;
 	[Export] private TowerSelectMenu towerSelectMenu;
+	[Export] public Menu gameOverMenu;
 
 	// null indicates no tile is highlighted, store the tilemap coordinates of the tile the mouse is over
 	private Vector2I? currentTileCoordinates;
@@ -95,6 +96,8 @@ public partial class GameManager : Node2D
 		towerSelectMenu.TowerPlaced += TowerPlaced;
 
 		catScene = GD.Load<PackedScene>(catScenePath);
+
+		gameOverMenu.Visible = false;
 	}
 
 	private void TowerSelectionCancelled()

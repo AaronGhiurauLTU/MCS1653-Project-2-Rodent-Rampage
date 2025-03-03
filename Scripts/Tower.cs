@@ -66,6 +66,9 @@ public partial class Tower : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
+		if (Engine.TimeScale == 0)
+			return;
+
 		RecalculateFirstEnemy();
 
 		if (firstEnemy != null && rotateTowardsEnemies)
