@@ -30,7 +30,7 @@ layout_mode = 2
 
 [node name="Tower1" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Tower 1"
+text = "($3) Tower 1"
 
 [node name="Tower2" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -100,13 +100,15 @@ tile_set = SubResource("TileSet_81ni4")
 position = Vector2(480, 270)
 scale = Vector2(0.5, 0.5)
 
-[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("tileMap", "towerSelectMenu", "gameOverMenu")]
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("tileMap", "towerSelectMenu", "gameOverMenu", "cashLabel")]
 unique_name_in_owner = true
 z_as_relative = false
 script = ExtResource("3_ru48m")
 tileMap = NodePath("../VisibleLevel/TileMaps/Foreground")
 towerSelectMenu = NodePath("../TowerSelectMenu")
 gameOverMenu = NodePath("../GameOverMenu")
+startingCash = 10
+cashLabel = NodePath("../TopBar/Label")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_04na6")]
 position = Vector2(207, 13)
@@ -170,7 +172,7 @@ offset_left = 529.0
 offset_top = 10.0
 offset_right = 952.0
 offset_bottom = 52.0
-text = "Money: Not implemented yet"
+text = "Money: $0"
 label_settings = SubResource("LabelSettings_f2bwu")
 
 [node name="Background" type="Sprite2D" parent="TopBar"]

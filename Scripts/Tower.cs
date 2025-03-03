@@ -6,6 +6,8 @@ public partial class Tower : Node2D
 	[Export] private bool rotateTowardsEnemies = true;
 	[Export] private float rotationSpeed = 7f;
 	[Export] private Timer attackCooldownTimer;
+	[Export] private int cost = 1;
+	public int Cost { get { return cost; } }
 	private HashSet<Enemy> enemiesInRange = new();
 	protected Enemy firstEnemy = null;
 	protected bool canAttack = true;

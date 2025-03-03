@@ -109,6 +109,7 @@ script = ExtResource("2_xg80j")
 attackAnimationPlayer = NodePath("DamageArea/AttackAnimationPlayer")
 rotationSpeed = 2.0
 attackCooldownTimer = NodePath("AttackCooldown")
+cost = 3
 
 [node name="DamageArea" parent="." instance=ExtResource("3_hf6fc")]
 position = Vector2(136, -2)

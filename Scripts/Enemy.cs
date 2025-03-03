@@ -7,14 +7,16 @@ public partial class Enemy : CharacterBody2D
 	[Export] private int maxHealth = 3;
 	[Export] private AnimatedSprite2D animatedSprite;
 	[Export] private TextureProgressBar healthBar;
+	[Export] private int cashDropped = 1;
 	public EnemySpawner enemySpawner;
 	private int currentNodeIndex = 0;
 	private float currentHealth;
-
+	private GameManager gameManager;
 	public override void _Ready()
 	{
 		currentHealth = maxHealth;
 		healthBar.Visible = false;
+		gameManager = enemySpawner.GetNode<GameManager>("%GameManager");
 	}
 
 	public void TakeDamage(int damageAmount)
@@ -30,6 +32,7 @@ public partial class Enemy : CharacterBody2D
 		// handle enemy death
 		if (currentHealth == 0)
 		{
+			gameManager.UpdateCash(cashDropped);
 			QueueFree();
 		}
 	}
@@ -45,13 +48,13 @@ public partial class Enemy : CharacterBody2D
 			{
 				currentNodeIndex++;
 			}
-			else
+			else // reached the end of the path
 			{
 				var cheese = enemySpawner.GetNode<AnimatedSprite2D>("%Cheese");
 				cheese?.QueueFree();
 				Engine.TimeScale = 0.0;
 				
-				enemySpawner.GetNode<GameManager>("%GameManager").gameOverMenu.Visible = true;
+				gameManager.gameOverMenu.Visible = true;
 			}
 		}
 		

@@ -8,6 +8,13 @@ public partial class GameManager : Node2D
 	[Export] private TowerSelectMenu towerSelectMenu;
 	[Export] public Menu gameOverMenu;
 
+	// amount of cash the player starts with
+	[Export] private int startingCash = 3;
+
+	// the label that displays the current cash amount
+	[Export] private Label cashLabel;
+	private int currentCash = 0;
+
 	// null indicates no tile is highlighted, store the tilemap coordinates of the tile the mouse is over
 	private Vector2I? currentTileCoordinates;
 
@@ -98,6 +105,8 @@ public partial class GameManager : Node2D
 		catScene = GD.Load<PackedScene>(catScenePath);
 
 		gameOverMenu.Visible = false;
+
+		UpdateCash(startingCash);
 	}
 
 	private void TowerSelectionCancelled()
@@ -109,20 +118,31 @@ public partial class GameManager : Node2D
 	{
 		// the position for the tower
 		Vector2 position = (tileMap.MapToLocal((Vector2I)currentTileCoordinates) * tileMap.Scale.X / 2) + tileMap.GetParent<Node2D>().Position;
-
+		Tower newTower = null;
+	
 		switch (towerName)
 		{
-		case "tower1":
-			var instance = (Node2D)catScene.Instantiate();
-			instance.Position = position;
-			AddChild(instance);
-			GD.Print("tower 1");
-			break;
-		case "tower2":
-			GD.Print("tower 2");
-			break;
+			case "tower1":
+				
+				newTower = (Tower)catScene.Instantiate();
+				GD.Print("tower 1");
+				break;
+			case "tower2":
+				GD.Print("tower 2");
+				break;
 		}
 
+		// ensure the player has enough cash to place the tower, and if not, delete the tower and do nothing else
+		if (!UpdateCash(-1 * (newTower?.Cost ?? int.MaxValue)))
+		{
+			newTower?.QueueFree();
+			return;
+		}
+
+		newTower.Position = position;
+		AddChild(newTower);
+
+		// make the tile unplaceable for where the new tower is
 		tileMap.SetCell((Vector2I)currentTileCoordinates, 1,  new Vector2I(3, 4));
 
 		currentTileCoordinates = null;
@@ -183,5 +203,18 @@ public partial class GameManager : Node2D
 		{
 			tileMap.SetCell((Vector2I)currentTileCoordinates, 1,  currentTileAtlasCoordinates);
 		}
+	}
+	
+	// update the cash amount and the label and returns false if there wasn't enough cash 
+	public bool UpdateCash(int cashChange)
+	{
+		if (currentCash + cashChange < 0)
+		{
+			return false;
+		}
+
+		currentCash += cashChange;
+		cashLabel.Text = "Money: $" + currentCash;
+		return true;
 	}
 }
