@@ -36,6 +36,9 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (Engine.TimeScale == 0)
+			return;
+
 		if ((Position - enemySpawner.pathfindingNodes[currentNodeIndex]).Length() < 5)
 		{
 			if (currentNodeIndex < enemySpawner.nodeCount - 1)
@@ -49,8 +52,6 @@ public partial class Enemy : CharacterBody2D
 				Engine.TimeScale = 0.0;
 				
 				enemySpawner.GetNode<GameManager>("%GameManager").gameOverMenu.Visible = true;
-
-				//QueueFree();
 			}
 		}
 		

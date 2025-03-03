@@ -75,7 +75,7 @@ offset_bottom = 299.0
 
 [node name="TowerSelectMenu" parent="." instance=ExtResource("2_nxtxe")]
 visible = false
-z_index = 9
+z_index = 20
 offset_left = 480.0
 offset_top = 270.0
 offset_right = 480.0
@@ -102,7 +102,6 @@ scale = Vector2(0.5, 0.5)
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("tileMap", "towerSelectMenu", "gameOverMenu")]
 unique_name_in_owner = true
-z_index = 4096
 z_as_relative = false
 script = ExtResource("3_ru48m")
 tileMap = NodePath("../VisibleLevel/TileMaps/Foreground")
