@@ -23,9 +23,11 @@ public partial class GameManager : Node2D
 
 	private string placeableTiles = "Placeable";
 
-	private string catScenePath = "res://Scenes/Cat.tscn";
+	private string catScenePath = "res://Scenes/Cat.tscn",
+		owlScenePath = "res://Scenes/Owl.tscn";
 
-	private PackedScene catScene;
+	private PackedScene catScene,
+		owlScene;
 
 	private enum State
 	{
@@ -103,6 +105,7 @@ public partial class GameManager : Node2D
 		towerSelectMenu.TowerPlaced += TowerPlaced;
 
 		catScene = GD.Load<PackedScene>(catScenePath);
+		owlScene = GD.Load<PackedScene>(owlScenePath);
 
 		gameOverMenu.Visible = false;
 
@@ -128,6 +131,7 @@ public partial class GameManager : Node2D
 				GD.Print("tower 1");
 				break;
 			case "tower2":
+				newTower = (Tower)owlScene.Instantiate();
 				GD.Print("tower 2");
 				break;
 		}

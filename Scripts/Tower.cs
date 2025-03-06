@@ -73,7 +73,7 @@ public partial class Tower : Node2D
 
 		RecalculateFirstEnemy();
 
-		if (firstEnemy != null && rotateTowardsEnemies)
+		if (firstEnemy != null && rotateTowardsEnemies && canAttack)
 		{
 			/* unadjusted represents angles between -180 to 180 degrees and adjusted represents angles between 0 and 360 degrees
 			 * what this code does is compares the adjusted versus unadjusted angles to select the pair of current and target rotations 
@@ -105,14 +105,18 @@ public partial class Tower : Node2D
 			// rotate the tower by the rotation speed
 			RotationDegrees = Mathf.MoveToward(currentRotationAngle, currentTargetAngle, rotationSpeed);
 
-			// attack if the tower is facing the enemy enough and the attack is off cooldown
-			if (Math.Abs(currentRotationAngle - currentTargetAngle) < 5 && canAttack)
+			// attack if the tower is facing the enemy enough
+			if (Math.Abs(currentRotationAngle - currentTargetAngle) < 5)
 			{
-				canAttack = false;
-				Attack();
-				attackCooldownTimer.Start();
+				InitializeAttack();
 			}
 		}
+	}
+	protected void InitializeAttack()
+	{
+		canAttack = false;
+		Attack();
+		attackCooldownTimer.Start();
 	}
 
 	private void UpdateMinimumAngle(float targetAngle, float rotation, ref float minimumAngleDifference, 

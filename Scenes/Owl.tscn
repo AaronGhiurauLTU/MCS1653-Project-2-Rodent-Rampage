@@ -1,11 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqwwe10u0u2sb"]
+[gd_scene load_steps=15 format=3 uid="uid://dlylnvaivcli0"]
 
-[ext_resource type="Texture2D" uid="uid://diq720lfc0uxe" path="res://Sprites/tilemap.png" id="1_0cye1"]
-[ext_resource type="Script" path="res://Scripts/Cat.cs" id="2_xg80j"]
-[ext_resource type="PackedScene" uid="uid://cy16leeudh217" path="res://Scenes/DamageArea.tscn" id="3_hf6fc"]
+[ext_resource type="Texture2D" uid="uid://diq720lfc0uxe" path="res://Sprites/tilemap.png" id="1_5uu5w"]
+[ext_resource type="Script" path="res://Scripts/Owl.cs" id="2_8aci5"]
+[ext_resource type="PackedScene" uid="uid://cy16leeudh217" path="res://Scenes/DamageArea.tscn" id="3_uuirf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hjsv"]
+atlas = ExtResource("1_5uu5w")
+region = Rect2(160, 160, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t48jn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hjsv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5sm4s"]
-atlas = ExtResource("1_0cye1")
+atlas = ExtResource("1_5uu5w")
 region = Rect2(640, 0, 160, 160)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ocvnk"]
@@ -84,7 +99,7 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ndk7h"]
-atlas = ExtResource("1_0cye1")
+atlas = ExtResource("1_5uu5w")
 region = Rect2(160, 160, 160, 160)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u3ul1"]
@@ -99,46 +114,54 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_atbjg"]
+radius = 25.0
 
-[node name="Cat" type="AnimatedSprite2D" node_paths=PackedStringArray("attackAnimationPlayer", "attackCooldownTimer")]
+[node name="Nest" type="AnimatedSprite2D" node_paths=PackedStringArray("owl", "attackAnimationPlayer", "attackCooldownTimer")]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_t48jn")
+script = ExtResource("2_8aci5")
+owl = NodePath("Owl")
+attackAnimationPlayer = NodePath("Owl/DamageArea/AttackAnimationPlayer")
+movementSpeed = 400.0
+rotateTowardsEnemies = false
+attackCooldownTimer = NodePath("AttackCooldown")
+
+[node name="Owl" type="AnimatedSprite2D" parent="."]
 z_index = 4
 position = Vector2(0, 1)
-scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ocvnk")
-script = ExtResource("2_xg80j")
-attackAnimationPlayer = NodePath("DamageArea/AttackAnimationPlayer")
-rotationSpeed = 3.0
-attackCooldownTimer = NodePath("AttackCooldown")
-cost = 3
 
-[node name="DamageArea" parent="." instance=ExtResource("3_hf6fc")]
-position = Vector2(136, -2)
+[node name="DamageArea" parent="Owl" instance=ExtResource("3_uuirf")]
+position = Vector2(-2, 13)
 
-[node name="CollisionShape2D" parent="DamageArea" index="0"]
+[node name="CollisionShape2D" parent="Owl/DamageArea" index="0"]
 shape = SubResource("RectangleShape2D_dpk6p")
 disabled = true
 
-[node name="AttackAnimationPlayer" type="AnimationPlayer" parent="DamageArea"]
+[node name="AttackAnimationPlayer" type="AnimationPlayer" parent="Owl/DamageArea"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_wdlsd")
 }
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DamageArea"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Owl/DamageArea"]
 visible = false
 sprite_frames = SubResource("SpriteFrames_u3ul1")
 
 [node name="DetectionRadius" type="Area2D" parent="."]
+position = Vector2(0, 1)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+position = Vector2(0, 3)
 scale = Vector2(25, 25)
 shape = SubResource("CircleShape2D_atbjg")
 
 [node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 1.5
 
 [connection signal="body_entered" from="DetectionRadius" to="." method="OnRangeEntered"]
 [connection signal="body_exited" from="DetectionRadius" to="." method="OnRangeExited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="OnAttackCooldownTimeout"]
 
-[editable path="DamageArea"]
+[editable path="Owl/DamageArea"]
