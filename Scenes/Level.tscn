@@ -127,105 +127,48 @@ position = Vector2(207, 13)
 position = Vector2(-5, 16)
 
 [node name="1" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(-2, 366)
+position = Vector2(-1.5, 391.5)
 
 [node name="2" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(38, 398)
+position = Vector2(19.5, 407)
 
 [node name="3" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(193, 406)
+position = Vector2(220, 404.5)
 
 [node name="4" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(233, 371)
+position = Vector2(235.5, 387.5)
 
 [node name="5" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(233, 203)
+position = Vector2(232.5, 179.5)
 
 [node name="6" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(273, 166)
+position = Vector2(253, 167)
 
 [node name="7" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(428, 163)
+position = Vector2(457, 167.5)
 
 [node name="8" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(471, 200)
+position = Vector2(471.5, 184)
 
 [node name="9" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(471, 363)
+position = Vector2(476.5, 390.5)
 
 [node name="10" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(514, 403)
+position = Vector2(495.5, 405.5)
 
 [node name="11" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(602, 403)
+position = Vector2(620, 404.5)
 
 [node name="12" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(629, 368)
+position = Vector2(632.5, 391.5)
 
 [node name="13" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(634, 280)
+position = Vector2(636, 261.5)
 
 [node name="14" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(674, 243)
+position = Vector2(651.5, 247.5)
 
 [node name="End" type="Node2D" parent="EnemySpawner/PathfindingNodes"]
-position = Vector2(733, 242)
-
-[node name="EnemySpawner2" parent="." instance=ExtResource("4_04na6")]
-position = Vector2(207, 13)
-enemyScenePath = "res://Scenes/Rat.tscn"
-
-[node name="NextEnemyTimer" parent="EnemySpawner2" index="0"]
-wait_time = 10.0
-
-[node name="PathfindingNodes" type="Node2D" parent="EnemySpawner2"]
-
-[node name="0" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(-5, 16)
-
-[node name="1" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(-2, 366)
-
-[node name="2" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(38, 398)
-
-[node name="3" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(193, 406)
-
-[node name="4" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(233, 371)
-
-[node name="5" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(233, 203)
-
-[node name="6" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(273, 166)
-
-[node name="7" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(428, 163)
-
-[node name="8" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(471, 200)
-
-[node name="9" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(471, 363)
-
-[node name="10" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(514, 403)
-
-[node name="11" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(602, 403)
-
-[node name="12" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(629, 368)
-
-[node name="13" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(634, 280)
-
-[node name="14" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
-position = Vector2(674, 243)
-
-[node name="End" type="Node2D" parent="EnemySpawner2/PathfindingNodes"]
 position = Vector2(733, 242)
 
 [node name="TopBar" type="Node2D" parent="."]
@@ -252,5 +195,3 @@ unique_name_in_owner = true
 position = Vector2(936, 256)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_nsdtx")
-
-[editable path="EnemySpawner2"]

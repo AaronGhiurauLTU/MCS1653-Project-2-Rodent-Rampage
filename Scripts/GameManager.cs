@@ -150,10 +150,8 @@ public partial class GameManager : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		if (currentState != State.placing)
-		{
+		if (currentState != State.placing || Engine.TimeScale == 0)
 			return;
-		}
 
 		Vector2 mousePos = GetViewport().GetMousePosition();
 
