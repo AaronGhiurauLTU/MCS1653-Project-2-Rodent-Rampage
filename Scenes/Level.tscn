@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=4 uid="uid://0d3f354e7xr1"]
 
 [ext_resource type="PackedScene" uid="uid://c3po4h4e5j77g" path="res://Scenes/GameOverMenu.tscn" id="1_cum67"]
-[ext_resource type="Texture2D" uid="uid://diq720lfc0uxe" path="res://Sprites/tilemap.png" id="2_ammx6"]
+[ext_resource type="Texture2D" uid="uid://c4wt3rkk60tnj" path="res://Sprites/tilemap.png" id="2_ammx6"]
 [ext_resource type="PackedScene" uid="uid://6a4o37635tsy" path="res://Scenes/TowerSelectMenu.tscn" id="2_nxtxe"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="3_ru48m"]
 [ext_resource type="PackedScene" uid="uid://ijf20yj6w2wm" path="res://Scenes/EnemySpawner.tscn" id="4_04na6"]

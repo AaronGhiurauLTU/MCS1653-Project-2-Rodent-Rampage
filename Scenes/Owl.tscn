@@ -1,33 +1,33 @@
 [gd_scene load_steps=15 format=3 uid="uid://dlylnvaivcli0"]
 
-[ext_resource type="Texture2D" uid="uid://diq720lfc0uxe" path="res://Sprites/tilemap.png" id="1_5uu5w"]
+[ext_resource type="Texture2D" uid="uid://c4wt3rkk60tnj" path="res://Sprites/tilemap.png" id="1_5uu5w"]
 [ext_resource type="Script" path="res://Scripts/Owl.cs" id="2_8aci5"]
 [ext_resource type="PackedScene" uid="uid://cy16leeudh217" path="res://Scenes/DamageArea.tscn" id="3_uuirf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1hjsv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_25lfs"]
 atlas = ExtResource("1_5uu5w")
-region = Rect2(160, 160, 160, 160)
+region = Rect2(480, 160, 160, 160)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t48jn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1hjsv")
+"texture": SubResource("AtlasTexture_25lfs")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5sm4s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bskbd"]
 atlas = ExtResource("1_5uu5w")
-region = Rect2(640, 0, 160, 160)
+region = Rect2(640, 160, 160, 160)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ocvnk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5sm4s")
+"texture": SubResource("AtlasTexture_bskbd")
 }],
 "loop": true,
 "name": &"default",
@@ -35,7 +35,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpk6p"]
-size = Vector2(238, 292)
+size = Vector2(72, 72)
 
 [sub_resource type="Animation" id="Animation_c4eo4"]
 resource_name = "Attack"
@@ -117,6 +117,7 @@ animations = [{
 radius = 25.0
 
 [node name="Nest" type="AnimatedSprite2D" node_paths=PackedStringArray("owl", "attackAnimationPlayer", "attackCooldownTimer")]
+z_index = 6
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_t48jn")
 script = ExtResource("2_8aci5")
@@ -132,7 +133,7 @@ position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_ocvnk")
 
 [node name="DamageArea" parent="Owl" instance=ExtResource("3_uuirf")]
-position = Vector2(-2, 13)
+position = Vector2(-2, 61)
 
 [node name="CollisionShape2D" parent="Owl/DamageArea" index="0"]
 shape = SubResource("RectangleShape2D_dpk6p")
@@ -146,6 +147,8 @@ libraries = {
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Owl/DamageArea"]
 visible = false
+z_index = -1
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_u3ul1")
 
 [node name="DetectionRadius" type="Area2D" parent="."]

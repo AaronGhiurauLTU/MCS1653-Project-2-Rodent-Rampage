@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://dqwwe10u0u2sb"]
 
-[ext_resource type="Texture2D" uid="uid://diq720lfc0uxe" path="res://Sprites/tilemap.png" id="1_0cye1"]
+[ext_resource type="Texture2D" uid="uid://c4wt3rkk60tnj" path="res://Sprites/tilemap.png" id="1_0cye1"]
 [ext_resource type="Script" path="res://Scripts/Cat.cs" id="2_xg80j"]
 [ext_resource type="PackedScene" uid="uid://cy16leeudh217" path="res://Scenes/DamageArea.tscn" id="3_hf6fc"]
 
