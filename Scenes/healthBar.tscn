@@ -9,14 +9,14 @@ gradient = SubResource("Gradient_3xyu1")
 
 [sub_resource type="Gradient" id="Gradient_1724c"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 1, 0, 1)
+colors = PackedColorArray(6.8105e-06, 0.701049, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bfs3l"]
 gradient = SubResource("Gradient_1724c")
 
 [node name="HealthBar" type="TextureProgressBar"]
 z_index = 11
-offset_right = 99.0
+offset_right = 100.0
 offset_bottom = 12.0
 max_value = 1.0
 step = 0.01
@@ -24,6 +24,4 @@ value = 0.5
 nine_patch_stretch = true
 texture_under = SubResource("GradientTexture2D_kbxum")
 texture_progress = SubResource("GradientTexture2D_bfs3l")
-tint_under = Color(1, 1, 1, 0.501961)
 tint_over = Color(1, 1, 1, 0)
-tint_progress = Color(1, 1, 1, 0.501961)

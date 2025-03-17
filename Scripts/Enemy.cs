@@ -18,6 +18,8 @@ public partial class Enemy : CharacterBody2D
 		healthBar.Visible = false;
 		gameManager = enemySpawner.GetNode<GameManager>("%GameManager");
 		animatedSprite.FlipH = true;
+		healthBar.Size = new Vector2(66 * (maxHealth / 3), healthBar.Size.Y);
+		healthBar.Position = new Vector2(-1 * healthBar.Size.X / 2, healthBar.Position.Y);
 	}
 
 	public void TakeDamage(int damageAmount)

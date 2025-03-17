@@ -38,7 +38,6 @@ sprite_frames = SubResource("SpriteFrames_v2342")
 flip_h = true
 
 [node name="HealthBar" parent="." instance=ExtResource("3_44u51")]
-offset_left = -48.0
-offset_top = -92.0
-offset_right = 51.0
-offset_bottom = -69.0
+offset_left = -100.0
+offset_top = -88.0
+offset_bottom = -65.0
