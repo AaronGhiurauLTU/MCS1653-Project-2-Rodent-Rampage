@@ -28,7 +28,7 @@ public partial class GameManager : Node2D
 
 	private PackedScene catScene,
 		owlScene;
-
+	private bool canPlace = false;
 	private enum State
 	{
 		placing,
@@ -172,7 +172,7 @@ public partial class GameManager : Node2D
 		string tileName = (string)tileData?.GetCustomData("Name");
 
 		// check the name of the tile to see if it is the current placeable tiles name or is highlighted
-		if (tileName == placeableTiles || tileName == "Highlight")
+		if (tileName != null)
 		{
 			// no need to update anything if the mouse stayed over the same tile last frame
 			if (currentTileCoordinates != tilePos)
@@ -183,18 +183,30 @@ public partial class GameManager : Node2D
 				currentTileCoordinates = tilePos;
 				currentTileAtlasCoordinates = tileMap.GetCellAtlasCoords(tilePos);
 
-				// set cell to the highlighted cell
-				tileMap.SetCell(tilePos, 1,  new Vector2I(0, 0));
+				if (tileName == placeableTiles)
+				{
+					canPlace = true;
+					// set cell to the highlighted cell
+					tileMap.SetCell(tilePos, 1,  new Vector2I(0, 0));
+				}
+				else
+				{
+					canPlace = false;
+					// set cell to the highlighted cell
+					tileMap.SetCell(tilePos, 1,  new Vector2I(3, 0));
+				}
+
 			}
 		} 
 		else
 		{
+			canPlace = false;
 			ResetPreviousTile();
 			currentTileCoordinates = null;
 			currentTileAtlasCoordinates = null;
 		}
 
-		if (Input.IsActionJustPressed("leftClick") && IsPlacable)
+		if (Input.IsActionJustPressed("leftClick") && IsPlacable && canPlace)
 		{
 			ChangeState(State.selectingTower);
 		}

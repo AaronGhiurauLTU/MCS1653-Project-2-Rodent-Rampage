@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b7ractxv7nfq3"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ixq3y"]
-[ext_resource type="Texture2D" uid="uid://c4wt3rkk60tnj" path="res://Sprites/tilemap.png" id="1_jjknt"]
+[ext_resource type="Texture2D" uid="uid://hm43gh03xb8w" path="res://Sprites/tilemap.png" id="1_jjknt"]
 [ext_resource type="PackedScene" uid="uid://boct4lmy8le45" path="res://Scenes/healthBar.tscn" id="3_44u51"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2fig"]
