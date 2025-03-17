@@ -17,6 +17,7 @@ public partial class Enemy : CharacterBody2D
 		currentHealth = maxHealth;
 		healthBar.Visible = false;
 		gameManager = enemySpawner.GetNode<GameManager>("%GameManager");
+		animatedSprite.FlipH = true;
 	}
 
 	public void TakeDamage(int damageAmount)
@@ -60,14 +61,15 @@ public partial class Enemy : CharacterBody2D
 		
 		Vector2 velocity = (enemySpawner.pathfindingNodes[currentNodeIndex] - Position).Normalized() * speed;
 		
-		if (velocity.X > 0)
-		{
-			animatedSprite.FlipH = true;
-		}
-		else if (velocity.X < 0)
-		{
-			animatedSprite.FlipH = false;
-		}
+		// if (velocity.X > 0)
+		// {
+		// 	
+		// }
+		// else if (velocity.X < 0)
+		// {
+		// 	animatedSprite.FlipH = false;
+		// }
+		animatedSprite.Rotation = velocity.Angle();
 
 		Velocity = velocity;
 		MoveAndSlide();

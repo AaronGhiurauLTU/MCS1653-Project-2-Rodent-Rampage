@@ -4,6 +4,7 @@ using System;
 public partial class Owl : Tower
 {
 	[Export] private AnimatedSprite2D owl;
+	[Export] private DamageArea damageArea;
 	[Export] private AnimationPlayer attackAnimationPlayer;
 	[Export] private float movementSpeed = 40;
 
@@ -25,7 +26,7 @@ public partial class Owl : Tower
 		if (firstEnemy != null && canAttack)
 		{
 			// get the difference vector between the owl and the first enemy
-			Vector2 difference = firstEnemy.GetParent<Node2D>().ToGlobal(firstEnemy.Position) - owl.GetParent<Node2D>().ToGlobal(owl.Position);
+			Vector2 difference = firstEnemy.GetParent<Node2D>().ToGlobal(firstEnemy.Position) - damageArea.GetParent<Node2D>().ToGlobal(damageArea.Position);
 
 			// attack if the enemy is close enough
 			if (difference.Length() < 10)
