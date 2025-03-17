@@ -5,7 +5,7 @@ public partial class EnemySpawner : Node2D
 {
 	public Vector2[] pathfindingNodes;
 	public int nodeCount;
-	private string enemyScenePath = "res://Scenes/Mouse.tscn";
+	[Export] private string enemyScenePath = "res://Scenes/Mouse.tscn";
 	PackedScene scene;
 	[Export] private Timer nextEnemyTimer;
 	public override void _Ready()

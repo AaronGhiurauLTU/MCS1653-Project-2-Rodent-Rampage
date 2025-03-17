@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq3svsjiq0oeq"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ypu2t"]
+[ext_resource type="Texture2D" uid="uid://c4wt3rkk60tnj" path="res://Sprites/tilemap.png" id="2_lxye5"]
+[ext_resource type="PackedScene" uid="uid://boct4lmy8le45" path="res://Scenes/healthBar.tscn" id="3_5nuq1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h2fig"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bswrw"]
+atlas = ExtResource("2_lxye5")
+region = Rect2(0, 320, 320, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v2342"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bswrw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Rat" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite", "healthBar")]
+z_index = 5
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+script = ExtResource("1_ypu2t")
+speed = 80.0
+maxHealth = 10
+animatedSprite = NodePath("AnimatedSprite2D")
+healthBar = NodePath("HealthBar")
+cashDropped = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h2fig")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v2342")
+flip_h = true
+
+[node name="HealthBar" parent="." instance=ExtResource("3_5nuq1")]
+offset_left = -48.0
+offset_top = -92.0
+offset_right = 51.0
+offset_bottom = -69.0
