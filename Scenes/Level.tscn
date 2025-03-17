@@ -71,6 +71,7 @@ animations = [{
 }]
 
 [node name="Level" type="Node2D"]
+scale = Vector2(2, 2)
 
 [node name="GameOverMenu" parent="." instance=ExtResource("1_cum67")]
 visible = false
@@ -115,7 +116,7 @@ tileMap = NodePath("../VisibleLevel/TileMaps/Foreground")
 towerSelectMenu = NodePath("../TowerSelectMenu")
 gameOverMenu = NodePath("../GameOverMenu")
 startingCash = 10
-cashLabel = NodePath("../TopBar/Label")
+cashLabel = NodePath("../TopBar/Money Label")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_04na6")]
 position = Vector2(207, 13)
@@ -230,12 +231,14 @@ position = Vector2(733, 242)
 [node name="TopBar" type="Node2D" parent="."]
 z_index = 20
 
-[node name="Label" type="Label" parent="TopBar"]
+[node name="Money Label" type="Label" parent="TopBar"]
 z_index = 1
-offset_left = 529.0
-offset_top = 10.0
-offset_right = 952.0
-offset_bottom = 52.0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 435.0
+offset_bottom = 48.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 text = "Money: $0"
 label_settings = SubResource("LabelSettings_f2bwu")
 

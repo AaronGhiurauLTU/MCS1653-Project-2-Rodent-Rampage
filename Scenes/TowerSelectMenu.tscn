@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/TowerSelectMenu.cs" id="1_im3jn"]
 
-[node name="TowerSelectMenu" type="Control"]
+[node name="TowerSelectMenu" type="Control" node_paths=PackedStringArray("tower1Button", "tower2Button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +10,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_im3jn")
+tower1Button = NodePath("MarginContainer/VBoxContainer/Tower1")
+tower2Button = NodePath("MarginContainer/VBoxContainer/Tower2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -30,7 +32,7 @@ layout_mode = 2
 
 [node name="Tower1" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "($3) Tower 1"
+text = "($3) Cat"
 
 [node name="Tower2" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
