@@ -3,23 +3,47 @@ using System;
 
 public partial class MusicManager : AudioStreamPlayer
 {
-	static public MusicManager instance;
-	[Export] private AudioStream backgroundMusic, victoryMusic;
+	public enum Song
+	{
+		Boss,
+		Background,
+		Victory
+	}
+	private static MusicManager instance;
+	private static Song currentSong;
+	[Export] private AudioStream backgroundMusic, bossMusic, victoryMusic;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		instance = this;
 	}
 
-	public static void PlayBackgroundMusic()
+	public static void SetBusVolume(string bus, float volume)
 	{
-		instance.Stream = instance.backgroundMusic;
-		instance.Play();
+		int busIndex = AudioServer.GetBusIndex(bus);
+		AudioServer.SetBusVolumeDb(busIndex, volume);
 	}
 
-	public static void PlayVictoryMusic()
+	public static void PlaySong(Song song)
 	{
-		instance.Stream = instance.victoryMusic;
+		if (currentSong == song)
+			return;
+
+		switch (song)
+		{
+			case Song.Boss:
+				instance.Stream = instance.bossMusic;
+				break;
+			case Song.Background:
+				instance.Stream = instance.backgroundMusic;
+				break;
+			case Song.Victory:
+				instance.Stream = instance.victoryMusic;
+				break;
+		}
+		
+		currentSong = song;
 		instance.Play();
 	}
 }

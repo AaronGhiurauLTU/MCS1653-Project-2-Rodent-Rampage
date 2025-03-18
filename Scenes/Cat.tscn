@@ -32,7 +32,7 @@ tracks/0/path = NodePath("DamageArea/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.266667),
+"times": PackedFloat32Array(0, 0.0333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -99,6 +99,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_atbjg"]
+radius = 10.2478
 
 [node name="Cat" type="AnimatedSprite2D" node_paths=PackedStringArray("attackAnimationPlayer", "attackCooldownTimer")]
 z_index = 4
@@ -109,7 +110,7 @@ script = ExtResource("2_xg80j")
 attackAnimationPlayer = NodePath("DamageArea/AttackAnimationPlayer")
 rotationSpeed = 3.0
 attackCooldownTimer = NodePath("AttackCooldown")
-cost = 3
+cost = 10
 
 [node name="DamageArea" parent="." instance=ExtResource("3_hf6fc")]
 position = Vector2(136, -2)

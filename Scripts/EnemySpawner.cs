@@ -8,14 +8,40 @@ public partial class EnemySpawner : Node2D
 	public int nodeCount;
 	[Export] private string mouseScenePath = "res://Scenes/Mouse.tscn";
 	[Export] private string ratScenePath = "res://Scenes/Rat.tscn";
-	private PackedScene mouseScene, ratScene, nextEnemy;
+	private PackedScene mouseScene, ratScene;
 	[Export] private Timer nextEnemyTimer;
 
 	private bool lastEnemySpawned = false;
+	public int bossesRemaining = 0;
 	public int enemiesRemaining;
 	public bool LastEnemySpawned { get { return lastEnemySpawned; } }
-	private Queue<Tuple<float, string>> waves = new Queue<Tuple<float, string>>(new Tuple<float, string>[] {
-		new(1, "mouse"),
+
+	class EnemyInformation
+	{
+		public readonly float delay;
+		public readonly string name;
+		public readonly bool isBoss;
+
+		public EnemyInformation(float delay, string name, bool isBoss = false)
+		{
+			this.delay = delay;
+			this.name = name;
+			this.isBoss = isBoss;
+		}
+	}
+
+	private EnemyInformation nextEnemy;
+	private Queue<EnemyInformation> waves = new Queue<EnemyInformation>(new EnemyInformation[] {
+		new(1.5f, "mouse"),
+		new(1.5f, "mouse"),
+		new(1.5f, "mouse"),
+		new(1.5f, "mouse"),
+		new(1.5f, "mouse"),
+		new(1.5f, "mouse"),
+		new(1.5f, "mouse"),
+		new(1.5f, "mouse"),
+
+		new(8, "mouse"),
 		new(1, "mouse"),
 		new(1, "mouse"),
 		new(1, "mouse"),
@@ -30,17 +56,23 @@ public partial class EnemySpawner : Node2D
 		new(1, "mouse"),
 		new(1, "mouse"),
 
-		new(10, "mouse"),
+		new(8, "mouse"),
 		new(1, "mouse"),
 		new(1, "mouse"),
-		new(0.5f, "mouse"),
-		new(0.5f, "mouse"),
-		new(0.5f, "mouse"),
-		new(0.5f, "mouse"),
-		new(0.5f, "mouse"),
-		new(0.5f, "mouse"),
-		new(0.5f, "mouse"),
-		new(0.5f, "rat"),
+		new(0.5f, "mouse", true),
+		new(0.5f, "mouse", true),
+		new(0.5f, "mouse", true),
+		new(0.5f, "mouse", true),
+		new(0.5f, "mouse", true),
+		new(0.5f, "mouse", true),
+		new(0.5f, "mouse", true),
+		new(0.5f, "mouse", true),
+		new(0.5f, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0.5f, "rat", true),
+		new(0.5f, "rat", true),
+
+		new(15, "mouse"),
 	});
 
 	public override void _Ready()
@@ -71,26 +103,36 @@ public partial class EnemySpawner : Node2D
 			return;
 		}
 
-		Tuple<float, string> info = waves.Dequeue();
-		nextEnemyTimer.Start(info.Item1);
+		EnemyInformation info = waves.Dequeue();
+		nextEnemyTimer.Start(info.delay);
 		
-		switch (info.Item2)
-		{
-			case "mouse":
-				nextEnemy = mouseScene;
-				break;
-			case "rat":
-				nextEnemy = ratScene;
-				break;
-		}
+		nextEnemy = info;
 	}
 	private void OnNextEnemyTimeout()
 	{
 		if (nextEnemy == null)
 			return;
 
-		Enemy instance = (Enemy)nextEnemy.Instantiate();
+		PackedScene scene = null;
+		switch (nextEnemy.name)
+		{
+			case "mouse":
+				scene = mouseScene;
+				break;
+			case "rat":
+				scene = ratScene;
+				break;
+		}
+		Enemy instance = (Enemy)scene.Instantiate();
 		instance.enemySpawner = this;
+
+		if (nextEnemy.isBoss)
+		{
+			bossesRemaining++;
+			instance.isBoss = true;
+			MusicManager.PlaySong(MusicManager.Song.Boss);
+		}
+
 		AddChild(instance);
 
 		GetNextEnemy();

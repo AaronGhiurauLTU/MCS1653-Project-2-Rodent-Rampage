@@ -125,7 +125,7 @@ tileMap = NodePath("../VisibleLevel/TileMaps/Foreground")
 towerSelectMenu = NodePath("../TowerSelectMenu")
 gameOverMenu = NodePath("../GameOverMenu")
 gameWonMenu = NodePath("../GameWonMenu")
-startingCash = 10
+startingCash = 20
 cashLabel = NodePath("../TopBar/Money Label")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_04na6")]

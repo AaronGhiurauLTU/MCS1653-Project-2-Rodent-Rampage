@@ -30,7 +30,7 @@ speed = 160.0
 maxHealth = 10
 animatedSprite = NodePath("AnimatedSprite2D")
 healthBar = NodePath("HealthBar")
-cashDropped = 5
+cashDropped = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_h2fig")

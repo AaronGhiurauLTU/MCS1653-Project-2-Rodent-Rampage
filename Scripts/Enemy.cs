@@ -12,6 +12,7 @@ public partial class Enemy : CharacterBody2D
 	private int currentNodeIndex = 0;
 	private float currentHealth;
 	private GameManager gameManager;
+	public bool isBoss;
 	public override void _Ready()
 	{
 		currentHealth = maxHealth;
@@ -45,7 +46,16 @@ public partial class Enemy : CharacterBody2D
 			{
 				gameManager.gameWonMenu.Visible = true;
 				Engine.TimeScale = 0.0;
-				MusicManager.PlayVictoryMusic();
+				MusicManager.PlaySong(MusicManager.Song.Victory);
+			}
+			else if (isBoss)
+			{
+				enemySpawner.bossesRemaining--;
+				
+				if (enemySpawner.bossesRemaining <= 0)
+				{
+					MusicManager.PlaySong(MusicManager.Song.Background);
+				}
 			}
 
 			QueueFree();

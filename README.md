@@ -29,6 +29,12 @@
 
 Background music:
 
+    Scheming Weasel (faster version) Kevin MacLeod (incompetech.com)
+    Licensed under Creative Commons: By Attribution 3.0 License
+    http://creativecommons.org/licenses/by/3.0/
+
+Boss music:
+
     Volatile Reaction Kevin MacLeod (incompetech.com)
     Licensed under Creative Commons: By Attribution 3.0 License
     http://creativecommons.org/licenses/by/3.0/

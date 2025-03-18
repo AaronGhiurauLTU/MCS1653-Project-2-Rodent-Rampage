@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d1vphw3hdqkuk"
+path="res://.godot/imported/Scheming Weasel faster.mp3-a5d3cee90fc3be15a1a07ec5f925c305.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Scheming Weasel faster.mp3"
+dest_files=["res://.godot/imported/Scheming Weasel faster.mp3-a5d3cee90fc3be15a1a07ec5f925c305.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

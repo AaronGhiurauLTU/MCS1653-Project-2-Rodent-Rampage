@@ -40,6 +40,7 @@ public partial class GameManager : Node2D
 	private void ExitSelectingTower()
 	{
 		towerSelectMenu.Visible = false;
+		MusicManager.SetBusVolume("Music", 0);
 	}
 
 	private void EnterPlacing()
@@ -50,6 +51,7 @@ public partial class GameManager : Node2D
 	private void EnterSelectingTower()
 	{
 		Engine.TimeScale = 0;
+		MusicManager.SetBusVolume("Music", -5);
 		towerSelectMenu.Visible = true;
 	}
 
@@ -104,7 +106,7 @@ public partial class GameManager : Node2D
 
 		UpdateCash(startingCash);
 
-		MusicManager.PlayBackgroundMusic();
+		MusicManager.PlaySong(MusicManager.Song.Background);
 	}
 
 	private void TowerSelectionCancelled()

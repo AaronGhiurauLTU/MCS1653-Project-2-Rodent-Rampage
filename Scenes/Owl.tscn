@@ -47,7 +47,7 @@ tracks/0/path = NodePath("DamageArea/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.266667),
+"times": PackedFloat32Array(0, 0.0333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -127,7 +127,7 @@ attackAnimationPlayer = NodePath("Owl/DamageArea/AttackAnimationPlayer")
 movementSpeed = 400.0
 rotateTowardsEnemies = false
 attackCooldownTimer = NodePath("AttackCooldown")
-cost = 5
+cost = 20
 
 [node name="Owl" type="AnimatedSprite2D" parent="."]
 z_index = 4
