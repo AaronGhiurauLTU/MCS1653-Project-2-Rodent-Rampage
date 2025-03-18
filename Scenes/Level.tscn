@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=4 uid="uid://0d3f354e7xr1"]
+[gd_scene load_steps=14 format=4 uid="uid://0d3f354e7xr1"]
 
 [ext_resource type="PackedScene" uid="uid://c3po4h4e5j77g" path="res://Scenes/GameOverMenu.tscn" id="1_cum67"]
+[ext_resource type="PackedScene" uid="uid://cihcgbs65akgc" path="res://Scenes/GameWonMenu.tscn" id="1_d46y3"]
 [ext_resource type="Texture2D" uid="uid://hm43gh03xb8w" path="res://Sprites/tilemap.png" id="2_ammx6"]
 [ext_resource type="PackedScene" uid="uid://6a4o37635tsy" path="res://Scenes/TowerSelectMenu.tscn" id="2_nxtxe"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="3_ru48m"]
@@ -73,6 +74,14 @@ animations = [{
 [node name="Level" type="Node2D"]
 scale = Vector2(2, 2)
 
+[node name="GameWonMenu" parent="." instance=ExtResource("1_d46y3")]
+visible = false
+z_index = 20
+offset_left = 483.0
+offset_top = 299.0
+offset_right = 483.0
+offset_bottom = 299.0
+
 [node name="GameOverMenu" parent="." instance=ExtResource("1_cum67")]
 visible = false
 z_index = 30
@@ -108,13 +117,14 @@ tile_set = SubResource("TileSet_81ni4")
 position = Vector2(480, 270)
 scale = Vector2(0.5, 0.5)
 
-[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("tileMap", "towerSelectMenu", "gameOverMenu", "cashLabel")]
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("tileMap", "towerSelectMenu", "gameOverMenu", "gameWonMenu", "cashLabel")]
 unique_name_in_owner = true
 z_as_relative = false
 script = ExtResource("3_ru48m")
 tileMap = NodePath("../VisibleLevel/TileMaps/Foreground")
 towerSelectMenu = NodePath("../TowerSelectMenu")
 gameOverMenu = NodePath("../GameOverMenu")
+gameWonMenu = NodePath("../GameWonMenu")
 startingCash = 10
 cashLabel = NodePath("../TopBar/Money Label")
 

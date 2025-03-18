@@ -27,7 +27,17 @@
 
 3. **Any assets used that you didn't create yourself?** <br> (art, music, etc. Just tell us where you got it, link it here)
 
+Background music:
 
+    Volatile Reaction Kevin MacLeod (incompetech.com)
+    Licensed under Creative Commons: By Attribution 3.0 License
+    http://creativecommons.org/licenses/by/3.0/
+
+Victory music:
+
+    Take a Chance Kevin MacLeod (incompetech.com)
+    Licensed under Creative Commons: By Attribution 3.0 License
+    http://creativecommons.org/licenses/by/3.0/
 <br>
 
 4. **Did you receive help from anyone outside this class?** <br> (list their names and what they helped with)

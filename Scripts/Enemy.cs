@@ -24,6 +24,9 @@ public partial class Enemy : CharacterBody2D
 
 	public void TakeDamage(int damageAmount)
 	{
+		if (currentHealth <= 0)
+			return;
+
 		currentHealth = Math.Max(0, currentHealth - damageAmount);
 
 		if (currentHealth < maxHealth)
@@ -36,6 +39,15 @@ public partial class Enemy : CharacterBody2D
 		if (currentHealth == 0)
 		{
 			gameManager.UpdateCash(cashDropped);
+			enemySpawner.enemiesRemaining--;
+
+			if (enemySpawner.enemiesRemaining == 0)
+			{
+				gameManager.gameWonMenu.Visible = true;
+				Engine.TimeScale = 0.0;
+				MusicManager.PlayVictoryMusic();
+			}
+
 			QueueFree();
 		}
 	}
@@ -63,14 +75,7 @@ public partial class Enemy : CharacterBody2D
 		
 		Vector2 velocity = (enemySpawner.pathfindingNodes[currentNodeIndex] - Position).Normalized() * speed;
 		
-		// if (velocity.X > 0)
-		// {
-		// 	
-		// }
-		// else if (velocity.X < 0)
-		// {
-		// 	animatedSprite.FlipH = false;
-		// }
+		// rotate with path
 		animatedSprite.Rotation = velocity.Angle();
 
 		Velocity = velocity;

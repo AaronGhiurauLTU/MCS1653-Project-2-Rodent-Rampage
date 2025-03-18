@@ -6,7 +6,7 @@ public partial class GameManager : Node2D
 {
 	[Export] private TileMapLayer tileMap;
 	[Export] private TowerSelectMenu towerSelectMenu;
-	[Export] public Menu gameOverMenu;
+	[Export] public Menu gameOverMenu, gameWonMenu;
 
 	// amount of cash the player starts with
 	[Export] private int startingCash = 3;
@@ -100,8 +100,11 @@ public partial class GameManager : Node2D
 		towerSelectMenu.TowerPlaced += TowerPlaced;
 
 		gameOverMenu.Visible = false;
+		gameWonMenu.Visible = false;
 
 		UpdateCash(startingCash);
+
+		MusicManager.PlayBackgroundMusic();
 	}
 
 	private void TowerSelectionCancelled()
@@ -120,11 +123,9 @@ public partial class GameManager : Node2D
 			case "tower1":
 				
 				newTower = (Tower)towerSelectMenu.catScene.Instantiate();
-				GD.Print("tower 1");
 				break;
 			case "tower2":
 				newTower = (Tower)towerSelectMenu.owlScene.Instantiate();
-				GD.Print("tower 2");
 				break;
 		}
 

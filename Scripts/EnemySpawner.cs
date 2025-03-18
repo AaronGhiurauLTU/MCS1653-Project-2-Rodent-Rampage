@@ -12,6 +12,7 @@ public partial class EnemySpawner : Node2D
 	[Export] private Timer nextEnemyTimer;
 
 	private bool lastEnemySpawned = false;
+	public int enemiesRemaining;
 	public bool LastEnemySpawned { get { return lastEnemySpawned; } }
 	private Queue<Tuple<float, string>> waves = new Queue<Tuple<float, string>>(new Tuple<float, string>[] {
 		new(1, "mouse"),
@@ -22,8 +23,14 @@ public partial class EnemySpawner : Node2D
 		new(1, "mouse"),
 		new(1, "mouse"),
 		new(1, "mouse"),
+		new(1, "mouse"),
+		new(1, "mouse"),
+		new(1, "mouse"),
+		new(1, "mouse"),
+		new(1, "mouse"),
+		new(1, "mouse"),
 
-		new(5, "mouse"),
+		new(10, "mouse"),
 		new(1, "mouse"),
 		new(1, "mouse"),
 		new(0.5f, "mouse"),
@@ -51,6 +58,7 @@ public partial class EnemySpawner : Node2D
 		mouseScene = GD.Load<PackedScene>(mouseScenePath);
 		ratScene = GD.Load<PackedScene>(ratScenePath);
 
+		enemiesRemaining = waves.Count;
 		GetNextEnemy();
 	}
 	private void GetNextEnemy()

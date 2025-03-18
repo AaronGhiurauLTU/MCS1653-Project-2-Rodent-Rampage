@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpiiphe8a2wi8"]
+
+[ext_resource type="AudioStream" uid="uid://ceeaprgk28twg" path="res://Audio/Music/Volatile Reaction.mp3" id="1_finbu"]
+[ext_resource type="Script" path="res://Scripts/MusicManager.cs" id="2_m6mku"]
+[ext_resource type="AudioStream" uid="uid://3mm7tvqfm1oa" path="res://Audio/Music/Take a Chance.mp3" id="3_sfasg"]
+
+[node name="MusicManager" type="AudioStreamPlayer"]
+stream = ExtResource("1_finbu")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+script = ExtResource("2_m6mku")
+backgroundMusic = ExtResource("1_finbu")
+victoryMusic = ExtResource("3_sfasg")
