@@ -72,7 +72,9 @@ public partial class EnemySpawner : Node2D
 		new(0.5f, "rat", true),
 		new(0.5f, "rat", true),
 
-		new(15, "mouse"),
+		new(15, "mouse", true),
+
+		new(7, "mouse")
 	});
 
 	public override void _Ready()
@@ -106,6 +108,11 @@ public partial class EnemySpawner : Node2D
 		EnemyInformation info = waves.Dequeue();
 		nextEnemyTimer.Start(info.delay);
 		
+		if (info.isBoss)
+		{
+			bossesRemaining++;
+		}
+
 		nextEnemy = info;
 	}
 	private void OnNextEnemyTimeout()
@@ -128,7 +135,6 @@ public partial class EnemySpawner : Node2D
 
 		if (nextEnemy.isBoss)
 		{
-			bossesRemaining++;
 			instance.isBoss = true;
 			MusicManager.PlaySong(MusicManager.Song.Boss);
 		}
