@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://0d3f354e7xr1"]
+[gd_scene load_steps=18 format=4 uid="uid://0d3f354e7xr1"]
 
 [ext_resource type="PackedScene" uid="uid://c3po4h4e5j77g" path="res://Scenes/GameOverMenu.tscn" id="1_cum67"]
 [ext_resource type="PackedScene" uid="uid://cihcgbs65akgc" path="res://Scenes/GameWonMenu.tscn" id="1_d46y3"]
@@ -14,12 +14,6 @@ texture_region_size = Vector2i(160, 160)
 0:0/0/custom_data_0 = "Highlight"
 1:0/0 = 0
 1:0/0/custom_data_0 = "Background"
-2:0/0 = 0
-2:0/0/custom_data_0 = "Background"
-3:0/0 = 0
-3:0/0/custom_data_0 = "Path"
-4:0/0 = 0
-4:0/0/custom_data_0 = "Tower"
 0:1/0 = 0
 0:1/0/custom_data_0 = "Enemy"
 4:4/0 = 0
@@ -38,6 +32,12 @@ texture_region_size = Vector2i(160, 160)
 2:2/0 = 0
 3:2/0 = 0
 4:2/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+4:3/0 = 0
+4:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_81ni4"]
 tile_size = Vector2i(160, 160)
@@ -56,6 +56,22 @@ colors = PackedColorArray(0.33133, 0.145491, 0.0086805, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_enw8v"]
 gradient = SubResource("Gradient_g2ath")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8y6lm"]
+atlas = ExtResource("2_ammx6")
+region = Rect2(160, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hydxc"]
+atlas = ExtResource("2_ammx6")
+region = Rect2(0, 320, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prgeb"]
+atlas = ExtResource("2_ammx6")
+region = Rect2(640, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5jvu"]
+atlas = ExtResource("2_ammx6")
+region = Rect2(480, 160, 160, 160)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ub6ul"]
 atlas = ExtResource("2_ammx6")
 region = Rect2(320, 160, 160, 160)
@@ -64,10 +80,42 @@ region = Rect2(320, 160, 160, 160)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_8y6lm")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hydxc")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prgeb")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5jvu")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ub6ul")
 }],
 "loop": true,
-"name": &"default",
+"name": &"5",
 "speed": 5.0
 }]
 
@@ -110,7 +158,7 @@ tile_map_data = PackedByteArray("AAD8//3/AQACAAQAAAD8//7/AQACAAQAAAD8////AQACAAQ
 tile_set = SubResource("TileSet_81ni4")
 
 [node name="Background" type="TileMapLayer" parent="VisibleLevel/TileMaps"]
-tile_map_data = PackedByteArray("AAD6/wIAAQACAAIAAAD7/wIAAQACAAIAAAD8/wIAAQACAAIAAAD9/wIAAQACAAIAAAD6/wEAAQACAAIAAAD8/wEAAQADAAMAAAD9/wEAAQADAAIAAAD7/wEAAQACAAIAAAD+/wEAAQADAAIAAAD+/wIAAQACAAIAAAD//wEAAQACAAMAAAD//wIAAQACAAIAAAAAAAEAAQACAAIAAAAAAAIAAQACAAIAAAABAAEAAQACAAIAAAABAAIAAQACAAIAAAACAAEAAQADAAMAAAACAAIAAQACAAIAAAADAAEAAQADAAIAAAADAAIAAQACAAIAAAAEAAEAAQACAAMAAAAEAAIAAQACAAIAAAAFAAEAAQACAAIAAAAFAAIAAQACAAIAAAD6////AQACAAIAAAD6/wAAAQACAAIAAAD7////AQACAAIAAAD7/wAAAQACAAIAAAD8////AQAEAAIAAAD8/wAAAQAEAAIAAAD9////AQACAAIAAAD9/wAAAQACAAIAAAD+////AQACAAIAAAD+/wAAAQACAAIAAAD/////AQAEAAIAAAD//wAAAQAEAAIAAAAAAP//AQACAAIAAAAAAAAAAQACAAIAAAABAP//AQACAAIAAAABAAAAAQACAAIAAAACAP//AQAEAAIAAAACAAAAAQAEAAIAAAADAP//AQACAAIAAAADAAAAAQACAAIAAAAEAP//AQABAAMAAAAEAAAAAQAEAAIAAAAFAP//AQADAAIAAAAFAAAAAQACAAIAAAACAP3/AQACAAIAAAACAP7/AQAAAAMAAAADAP3/AQACAAIAAAADAP7/AQACAAIAAAAEAP3/AQACAAIAAAAEAP7/AQACAAIAAAAFAP3/AQACAAIAAAAFAP7/AQACAAIAAAD///3/AQACAAIAAAD///7/AQABAAMAAAAAAP3/AQACAAIAAAAAAP7/AQADAAIAAAABAP3/AQACAAIAAAABAP7/AQADAAIAAAD8//3/AQAEAAIAAAD8//7/AQAEAAIAAAD9//3/AQACAAIAAAD9//7/AQACAAIAAAD+//3/AQACAAIAAAD+//7/AQACAAIAAAD6//3/AQACAAIAAAD6//7/AQACAAIAAAD7//3/AQACAAIAAAD7//7/AQACAAIAAAA=")
+tile_map_data = PackedByteArray("AAD6/wIAAQAEAAMAAAD7/wIAAQACAAIAAAD8/wIAAQACAAIAAAD9/wIAAQACAAIAAAD6/wEAAQACAAIAAAD8/wEAAQADAAMAAAD9/wEAAQADAAIAAAD7/wEAAQACAAIAAAD+/wEAAQADAAIAAAD+/wIAAQACAAIAAAD//wEAAQACAAMAAAD//wIAAQACAAIAAAAAAAEAAQACAAIAAAAAAAIAAQACAAIAAAABAAEAAQACAAIAAAABAAIAAQAEAAMAAAACAAEAAQADAAMAAAACAAIAAQACAAIAAAADAAEAAQADAAIAAAADAAIAAQACAAIAAAAEAAEAAQACAAMAAAAEAAIAAQACAAIAAAAFAAEAAQACAAIAAAAFAAIAAQACAAIAAAD6////AQACAAIAAAD6/wAAAQACAAIAAAD7////AQACAAIAAAD7/wAAAQACAAIAAAD8////AQAEAAIAAAD8/wAAAQAEAAIAAAD9////AQACAAIAAAD9/wAAAQACAAIAAAD+////AQAEAAMAAAD+/wAAAQACAAIAAAD/////AQAEAAIAAAD//wAAAQAEAAIAAAAAAP//AQACAAIAAAAAAAAAAQACAAIAAAABAP//AQACAAIAAAABAAAAAQACAAIAAAACAP//AQAEAAIAAAACAAAAAQAEAAIAAAADAP//AQACAAIAAAADAAAAAQAEAAMAAAAEAP//AQABAAMAAAAEAAAAAQAEAAIAAAAFAP//AQADAAIAAAAFAAAAAQACAAIAAAACAP3/AQACAAIAAAACAP7/AQAAAAMAAAADAP3/AQACAAIAAAADAP7/AQACAAIAAAAEAP3/AQACAAIAAAAEAP7/AQACAAIAAAAFAP3/AQAEAAMAAAAFAP7/AQACAAIAAAD///3/AQACAAIAAAD///7/AQABAAMAAAAAAP3/AQACAAIAAAAAAP7/AQADAAIAAAABAP3/AQACAAIAAAABAP7/AQADAAIAAAD8//3/AQAEAAIAAAD8//7/AQAEAAIAAAD9//3/AQACAAIAAAD9//7/AQACAAIAAAD+//3/AQACAAIAAAD+//7/AQACAAIAAAD6//3/AQACAAIAAAD6//7/AQACAAIAAAD7//3/AQACAAIAAAD7//7/AQAEAAMAAAA=")
 tile_set = SubResource("TileSet_81ni4")
 
 [node name="Camera2D" type="Camera2D" parent="VisibleLevel"]
@@ -205,3 +253,5 @@ unique_name_in_owner = true
 position = Vector2(936, 256)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_nsdtx")
+animation = &"1"
+autoplay = "5"

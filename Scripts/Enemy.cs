@@ -76,10 +76,21 @@ public partial class Enemy : CharacterBody2D
 			else // reached the end of the path
 			{
 				var cheese = enemySpawner.GetNode<AnimatedSprite2D>("%Cheese");
-				cheese?.QueueFree();
-				Engine.TimeScale = 0.0;
-				
-				gameManager.gameOverMenu.Visible = true;
+
+				gameManager.currentHealth--;
+
+				if (gameManager.currentHealth == 0)
+				{
+					cheese?.QueueFree();
+					Engine.TimeScale = 0.0;
+					
+					gameManager.gameOverMenu.Visible = true;
+				}
+				else
+				{
+					cheese.Animation = $"{gameManager.currentHealth}";
+					QueueFree();
+				}
 			}
 		}
 		

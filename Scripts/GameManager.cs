@@ -31,6 +31,7 @@ public partial class GameManager : Node2D
 	}
 
 	private State currentState;
+	public int currentHealth = 5;
 
 	private void ExitPlacing()
 	{
@@ -186,7 +187,7 @@ public partial class GameManager : Node2D
 				{
 					canPlace = false;
 					// set cell to the highlighted cell
-					tileMap.SetCell(tilePos, 1,  new Vector2I(3, 0));
+					tileMap.SetCell(tilePos, 1,  new Vector2I(1, 0));
 				}
 
 			}

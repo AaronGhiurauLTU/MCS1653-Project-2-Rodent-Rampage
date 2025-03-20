@@ -1,20 +1,20 @@
 [gd_scene load_steps=7 format=3 uid="uid://dq3svsjiq0oeq"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ypu2t"]
-[ext_resource type="Texture2D" uid="uid://hm43gh03xb8w" path="res://Sprites/tilemap.png" id="2_lxye5"]
+[ext_resource type="Texture2D" uid="uid://baxg01t5oiln1" path="res://Sprites/owl_rat_spritesheet.png" id="2_bfhln"]
 [ext_resource type="PackedScene" uid="uid://boct4lmy8le45" path="res://Scenes/healthBar.tscn" id="3_5nuq1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2fig"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bswrw"]
-atlas = ExtResource("2_lxye5")
+[sub_resource type="AtlasTexture" id="AtlasTexture_pil88"]
+atlas = ExtResource("2_bfhln")
 region = Rect2(0, 320, 320, 160)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v2342"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bswrw")
+"texture": SubResource("AtlasTexture_pil88")
 }],
 "loop": true,
 "name": &"default",
