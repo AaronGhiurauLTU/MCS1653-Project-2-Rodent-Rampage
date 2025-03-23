@@ -8,6 +8,7 @@ public partial class GameManager : Node2D
 	[Export] private TowerSelectMenu towerSelectMenu;
 	[Export] public Menu gameOverMenu, gameWonMenu;
 	[Export] private AnimationPlayer tower1ButtonAnim, tower2buttonAnim;
+	[Export] public AudioStreamPlayer biteSound;
 
 	// amount of cash the player starts with
 	[Export] private int startingCash = 3;
@@ -39,7 +40,7 @@ public partial class GameManager : Node2D
 		
 	}
 
-	private void ExitSelectingTower()
+	public void ExitSelectingTower()
 	{
 		towerSelectMenu.Visible = false;
 		MusicManager.SetBusVolume("Music", 0);

@@ -50,6 +50,16 @@ Defeat music:
 	lose life falling 
 	https://mixkit.co/free-sound-effects/lose/
 
+mouse squek.mp3 by FairCashew -- https://freesound.org/s/684866/ -- License: Creative Commons 0
+
+rat-squeak.wav by toefur -- https://freesound.org/s/288941/ -- License: Creative Commons 0
+
+Biting Apple #2 by AUDACITIER -- https://freesound.org/s/632231/ -- License: Attribution 4.0
+
+1_Knife_Slash_A.wav by lmbubec -- https://freesound.org/s/118792/ -- License: Creative Commons 0
+
+Simple Slash Attack Sound by BeezleFM -- https://freesound.org/s/518883/ -- License: Attribution 4.0
+
 <br>
 
 4. **Did you receive help from anyone outside this class?** <br> (list their names and what they helped with)

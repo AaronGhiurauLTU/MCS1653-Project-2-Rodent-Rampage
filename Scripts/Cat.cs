@@ -7,6 +7,7 @@ public partial class Cat : Tower
 
 	protected override void Attack()
 	{
+		base.Attack();
 		attackAnimationPlayer.Play("Attack");
 	}
 	// Called when the node enters the scene tree for the first time.

@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dqwwe10u0u2sb"]
+[gd_scene load_steps=20 format=3 uid="uid://dqwwe10u0u2sb"]
 
 [ext_resource type="Texture2D" uid="uid://dxogdulabfb68" path="res://Sprites/cat_mouse_spritesheet.png" id="1_cgu4h"]
 [ext_resource type="Script" path="res://Scripts/Cat.cs" id="2_xg80j"]
 [ext_resource type="PackedScene" uid="uid://cy16leeudh217" path="res://Scenes/DamageArea.tscn" id="3_hf6fc"]
+[ext_resource type="AudioStream" uid="uid://p7uoavv0hr5o" path="res://Audio/SFX/518883__beezlefm__simple-slash-attack-sound.wav" id="4_cbf4t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_odx0t"]
 atlas = ExtResource("1_cgu4h")
@@ -179,7 +180,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_atbjg"]
 radius = 10.2478
 
-[node name="Cat" type="AnimatedSprite2D" node_paths=PackedStringArray("attackAnimationPlayer", "attackCooldownTimer")]
+[node name="Cat" type="AnimatedSprite2D" node_paths=PackedStringArray("attackAnimationPlayer", "attackCooldownTimer", "attackSound")]
 z_index = 4
 position = Vector2(0, 1)
 scale = Vector2(0.5, 0.5)
@@ -193,6 +194,7 @@ attackAnimationPlayer = NodePath("DamageArea/AttackAnimationPlayer")
 rotationSpeed = 3.0
 attackCooldownTimer = NodePath("AttackCooldown")
 cost = 10
+attackSound = NodePath("AttackSound")
 
 [node name="DamageArea" parent="." instance=ExtResource("3_hf6fc")]
 position = Vector2(0, 124)
@@ -222,6 +224,11 @@ scale = Vector2(25, 25)
 shape = SubResource("CircleShape2D_atbjg")
 
 [node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cbf4t")
+volume_db = 3.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="DetectionRadius" to="." method="OnRangeEntered"]
 [connection signal="body_exited" from="DetectionRadius" to="." method="OnRangeExited"]

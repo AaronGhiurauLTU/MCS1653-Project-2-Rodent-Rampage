@@ -7,6 +7,7 @@ public partial class Tower : Node2D
 	[Export] private float rotationSpeed = 7f;
 	[Export] private Timer attackCooldownTimer;
 	[Export] private int cost = 1;
+	[Export] protected AudioStreamPlayer attackSound;
 	public int Cost { get { return cost; } }
 	private HashSet<Enemy> enemiesInRange = new();
 	protected Enemy firstEnemy = null;
@@ -37,10 +38,16 @@ public partial class Tower : Node2D
 	{
 		float shortestDistanceToEnd = float.PositiveInfinity;
 		Enemy currentFirstEnemy = null;
+		HashSet<Enemy> deadEnemies = new();
 
 		foreach (Enemy enemy in enemiesInRange)
 		{
-			// can later optimize by skipping enemies that have more nodes remaining to avoid the need to sum the distances
+			if (enemy.currentHealth <= 0)
+			{
+				deadEnemies.Add(enemy);
+				continue;
+			}
+
 			float currentEnemyDistanceToEnd = enemy.GetDistanceTillEnd();
 
 			if (shortestDistanceToEnd > currentEnemyDistanceToEnd)
@@ -50,13 +57,18 @@ public partial class Tower : Node2D
 			}
 		}
 
+		foreach (Enemy enemy in deadEnemies)
+		{
+			enemiesInRange.Remove(enemy);
+		}
+
 		firstEnemy = currentFirstEnemy;
 	}
 
 	// gets overridden by derived classes
 	protected virtual void Attack()
 	{
-
+		attackSound.Play();
 	}
 
 	// Called when the node enters the scene tree for the first time.

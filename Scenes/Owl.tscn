@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dlylnvaivcli0"]
+[gd_scene load_steps=22 format=3 uid="uid://dlylnvaivcli0"]
 
 [ext_resource type="Texture2D" uid="uid://dtksmrd17wnod" path="res://Sprites/owl_rat_spritesheet.png" id="1_1jprn"]
 [ext_resource type="Script" path="res://Scripts/Owl.cs" id="2_8aci5"]
 [ext_resource type="PackedScene" uid="uid://cy16leeudh217" path="res://Scenes/DamageArea.tscn" id="3_uuirf"]
+[ext_resource type="AudioStream" uid="uid://c6fjpghlhpgtl" path="res://Audio/SFX/118792__lmbubec__1_knife_slash_a.wav" id="4_l60xs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kp31h"]
 atlas = ExtResource("1_1jprn")
@@ -201,7 +202,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_atbjg"]
 radius = 25.0
 
-[node name="Nest" type="AnimatedSprite2D" node_paths=PackedStringArray("owl", "damageArea", "attackAnimationPlayer", "attackCooldownTimer")]
+[node name="Nest" type="AnimatedSprite2D" node_paths=PackedStringArray("owl", "damageArea", "attackAnimationPlayer", "attackCooldownTimer", "attackSound")]
 z_index = 6
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_t48jn")
@@ -213,6 +214,7 @@ movementSpeed = 400.0
 rotateTowardsEnemies = false
 attackCooldownTimer = NodePath("AttackCooldown")
 cost = 20
+attackSound = NodePath("AttackSound")
 
 [node name="Owl" type="AnimatedSprite2D" parent="."]
 z_index = 4
@@ -253,6 +255,10 @@ shape = SubResource("CircleShape2D_atbjg")
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_l60xs")
+bus = &"SFX"
 
 [connection signal="body_entered" from="DetectionRadius" to="." method="OnRangeEntered"]
 [connection signal="body_exited" from="DetectionRadius" to="." method="OnRangeExited"]

@@ -11,7 +11,7 @@ public partial class Enemy : CharacterBody2D
 	[Export] private AnimationPlayer animationPlayer;
 	public EnemySpawner enemySpawner;
 	private int currentNodeIndex = 0;
-	private float currentHealth;
+	public float currentHealth;
 	private GameManager gameManager;
 	public bool isBoss;
 	public override void _Ready()
@@ -30,6 +30,7 @@ public partial class Enemy : CharacterBody2D
 
 		if (enemySpawner.enemiesRemaining == 0)
 		{
+			gameManager.ExitSelectingTower();
 			gameManager.gameWonMenu.Visible = true;
 			Engine.TimeScale = 0.0;
 			MusicManager.PlaySong(MusicManager.Song.Victory);
@@ -62,6 +63,7 @@ public partial class Enemy : CharacterBody2D
 		if (currentHealth <= 0)
 			return;
 
+		animationPlayer.Play("damage");
 		currentHealth = Math.Max(0, currentHealth - damageAmount);
 
 		if (currentHealth < maxHealth)
@@ -93,12 +95,14 @@ public partial class Enemy : CharacterBody2D
 				var cheese = enemySpawner.GetNode<AnimatedSprite2D>("%Cheese");
 
 				gameManager.currentHealth--;
+				gameManager.biteSound.Play();
 
 				if (gameManager.currentHealth == 0)
 				{
 					cheese?.QueueFree();
 					Engine.TimeScale = 0.0;
 					
+					gameManager.ExitSelectingTower();
 					MusicManager.SetBusVolume("Music", -5);
 					MusicManager.PlaySong(MusicManager.Song.Defeat);
 					gameManager.gameOverMenu.Visible = true;
