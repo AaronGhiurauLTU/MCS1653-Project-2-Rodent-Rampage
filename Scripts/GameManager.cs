@@ -7,6 +7,7 @@ public partial class GameManager : Node2D
 	[Export] private TileMapLayer tileMap;
 	[Export] private TowerSelectMenu towerSelectMenu;
 	[Export] public Menu gameOverMenu, gameWonMenu;
+	[Export] private AnimationPlayer tower1ButtonAnim, tower2buttonAnim;
 
 	// amount of cash the player starts with
 	[Export] private int startingCash = 3;
@@ -51,8 +52,8 @@ public partial class GameManager : Node2D
 
 	private void EnterSelectingTower()
 	{
-		Engine.TimeScale = 0;
-		MusicManager.SetBusVolume("Music", -5);
+		// Engine.TimeScale = 0;
+		// MusicManager.SetBusVolume("Music", -5);
 		towerSelectMenu.Visible = true;
 	}
 
@@ -108,6 +109,7 @@ public partial class GameManager : Node2D
 		UpdateCash(startingCash);
 
 		MusicManager.PlaySong(MusicManager.Song.Background);
+		MusicManager.SetBusVolume("Music", 0);
 	}
 
 	private void TowerSelectionCancelled()
@@ -120,15 +122,17 @@ public partial class GameManager : Node2D
 		// the position for the tower
 		Vector2 position = (tileMap.MapToLocal((Vector2I)currentTileCoordinates) * tileMap.Scale.X / 2) + tileMap.GetParent<Node2D>().Position;
 		Tower newTower = null;
-	
+		AnimationPlayer animationPlayer = null;
+
 		switch (towerName)
 		{
-			case "tower1":
-				
+			case "tower1":	
 				newTower = (Tower)towerSelectMenu.catScene.Instantiate();
+				animationPlayer = tower1ButtonAnim;
 				break;
 			case "tower2":
 				newTower = (Tower)towerSelectMenu.owlScene.Instantiate();
+				animationPlayer = tower2buttonAnim;
 				break;
 		}
 
@@ -136,6 +140,7 @@ public partial class GameManager : Node2D
 		if (!UpdateCash(-1 * (newTower?.Cost ?? int.MaxValue)))
 		{
 			newTower?.QueueFree();
+			animationPlayer.Play("flash red");
 			return;
 		}
 

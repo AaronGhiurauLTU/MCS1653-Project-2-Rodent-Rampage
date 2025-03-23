@@ -44,6 +44,12 @@ Victory music:
     Take a Chance Kevin MacLeod (incompetech.com)
     Licensed under Creative Commons: By Attribution 3.0 License
     http://creativecommons.org/licenses/by/3.0/
+
+Defeat music:
+
+	lose life falling 
+	https://mixkit.co/free-sound-effects/lose/
+
 <br>
 
 4. **Did you receive help from anyone outside this class?** <br> (list their names and what they helped with)

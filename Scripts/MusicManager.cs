@@ -7,11 +7,12 @@ public partial class MusicManager : AudioStreamPlayer
 	{
 		Boss,
 		Background,
-		Victory
+		Victory,
+		Defeat
 	}
 	private static MusicManager instance;
 	private static Song currentSong;
-	[Export] private AudioStream backgroundMusic, bossMusic, victoryMusic;
+	[Export] private AudioStream backgroundMusic, bossMusic, victoryMusic, defeatMusic;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -40,6 +41,9 @@ public partial class MusicManager : AudioStreamPlayer
 				break;
 			case Song.Victory:
 				instance.Stream = instance.victoryMusic;
+				break;
+			case Song.Defeat:
+				instance.Stream = instance.defeatMusic;
 				break;
 		}
 		

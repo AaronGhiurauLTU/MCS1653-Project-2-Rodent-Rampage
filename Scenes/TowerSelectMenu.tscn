@@ -1,8 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://6a4o37635tsy"]
+[gd_scene load_steps=5 format=3 uid="uid://6a4o37635tsy"]
 
 [ext_resource type="Script" path="res://Scripts/TowerSelectMenu.cs" id="1_im3jn"]
 
+[sub_resource type="Animation" id="Animation_17ehl"]
+resource_name = "flash red"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lqbk8"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_44bn4"]
+_data = {
+"RESET": SubResource("Animation_lqbk8"),
+"flash red": SubResource("Animation_17ehl")
+}
+
 [node name="TowerSelectMenu" type="Control" node_paths=PackedStringArray("tower1Button", "tower2Button")]
+self_modulate = Color(1, 0, 0, 1)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,10 +72,20 @@ layout_mode = 2
 layout_mode = 2
 text = "($3) Cat"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Tower1"]
+libraries = {
+"": SubResource("AnimationLibrary_44bn4")
+}
+
 [node name="Tower2" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "this text auto updates when game starts
 "
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/Tower2"]
+libraries = {
+"": SubResource("AnimationLibrary_44bn4")
+}
 
 [node name="Cancel" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

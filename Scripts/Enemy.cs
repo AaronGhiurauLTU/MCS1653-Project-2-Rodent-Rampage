@@ -99,6 +99,8 @@ public partial class Enemy : CharacterBody2D
 					cheese?.QueueFree();
 					Engine.TimeScale = 0.0;
 					
+					MusicManager.SetBusVolume("Music", -5);
+					MusicManager.PlaySong(MusicManager.Song.Defeat);
 					gameManager.gameOverMenu.Visible = true;
 				}
 				else
