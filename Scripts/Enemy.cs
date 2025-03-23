@@ -8,6 +8,7 @@ public partial class Enemy : CharacterBody2D
 	[Export] private AnimatedSprite2D animatedSprite;
 	[Export] private TextureProgressBar healthBar;
 	[Export] private int cashDropped = 1;
+	[Export] private AnimationPlayer animationPlayer;
 	public EnemySpawner enemySpawner;
 	private int currentNodeIndex = 0;
 	private float currentHealth;
@@ -25,9 +26,6 @@ public partial class Enemy : CharacterBody2D
 
 	public void Destroy(bool slain = true)
 	{
-		if (slain)
-			gameManager.UpdateCash(cashDropped);
-
 		enemySpawner.enemiesRemaining--;
 
 		if (enemySpawner.enemiesRemaining == 0)
@@ -46,7 +44,16 @@ public partial class Enemy : CharacterBody2D
 			}
 		}
 
-		QueueFree();
+		if (slain)
+		{
+			gameManager.UpdateCash(cashDropped);
+			healthBar.QueueFree();
+			animationPlayer.Play("death");
+		}
+		else
+		{
+			QueueFree();
+		}
 	}
 
 	public void TakeDamage(int damageAmount)
@@ -71,7 +78,7 @@ public partial class Enemy : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (Engine.TimeScale == 0)
+		if (Engine.TimeScale == 0 || currentHealth <= 0)
 			return;
 
 		if ((Position - enemySpawner.pathfindingNodes[currentNodeIndex]).Length() < 5)

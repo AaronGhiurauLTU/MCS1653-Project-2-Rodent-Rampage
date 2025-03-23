@@ -1,12 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq3svsjiq0oeq"]
+[gd_scene load_steps=14 format=3 uid="uid://dq3svsjiq0oeq"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ypu2t"]
-[ext_resource type="Texture2D" uid="uid://baxg01t5oiln1" path="res://Sprites/owl_rat_spritesheet.png" id="2_bfhln"]
+[ext_resource type="Texture2D" uid="uid://dtksmrd17wnod" path="res://Sprites/owl_rat_spritesheet.png" id="2_bfhln"]
 [ext_resource type="PackedScene" uid="uid://boct4lmy8le45" path="res://Scenes/healthBar.tscn" id="3_5nuq1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2fig"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pil88"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_petxq"]
+atlas = ExtResource("2_bfhln")
+region = Rect2(320, 480, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eshuf"]
+atlas = ExtResource("2_bfhln")
+region = Rect2(0, 480, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucffr"]
+atlas = ExtResource("2_bfhln")
+region = Rect2(0, 320, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3hyt"]
+atlas = ExtResource("2_bfhln")
+region = Rect2(320, 320, 320, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akd3p"]
 atlas = ExtResource("2_bfhln")
 region = Rect2(0, 320, 320, 160)
 
@@ -14,14 +30,81 @@ region = Rect2(0, 320, 320, 160)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pil88")
+"texture": SubResource("AtlasTexture_petxq")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eshuf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucffr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3hyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akd3p")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="Rat" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite", "healthBar")]
+[sub_resource type="Animation" id="Animation_3rhu1"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"dead"]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.566667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1smxn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kl5s6"]
+_data = {
+"RESET": SubResource("Animation_1smxn"),
+"death": SubResource("Animation_3rhu1")
+}
+
+[node name="Rat" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite", "healthBar", "animationPlayer")]
 z_index = 5
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
@@ -31,12 +114,14 @@ maxHealth = 10
 animatedSprite = NodePath("AnimatedSprite2D")
 healthBar = NodePath("HealthBar")
 cashDropped = 3
+animationPlayer = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_h2fig")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v2342")
+autoplay = "default"
 flip_h = true
 
 [node name="HealthBar" parent="." instance=ExtResource("3_5nuq1")]
@@ -44,3 +129,8 @@ offset_left = -48.0
 offset_top = -92.0
 offset_right = 51.0
 offset_bottom = -69.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kl5s6")
+}
