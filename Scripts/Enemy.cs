@@ -47,6 +47,7 @@ public partial class Enemy : CharacterBody2D
 		if (slain)
 		{
 			gameManager.UpdateCash(cashDropped);
+			animatedSprite.RotationDegrees = 0;
 			healthBar.QueueFree();
 			animationPlayer.Play("death");
 		}

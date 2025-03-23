@@ -1,20 +1,53 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7ractxv7nfq3"]
+[gd_scene load_steps=14 format=3 uid="uid://b7ractxv7nfq3"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ixq3y"]
-[ext_resource type="Texture2D" uid="uid://hm43gh03xb8w" path="res://Sprites/tilemap.png" id="1_jjknt"]
+[ext_resource type="Texture2D" uid="uid://dxogdulabfb68" path="res://Sprites/cat_mouse_spritesheet.png" id="2_47264"]
 [ext_resource type="PackedScene" uid="uid://boct4lmy8le45" path="res://Scenes/healthBar.tscn" id="3_44u51"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2fig"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q1r8m"]
-atlas = ExtResource("1_jjknt")
-region = Rect2(0, 160, 160, 160)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7d5yw"]
+atlas = ExtResource("2_47264")
+region = Rect2(480, 480, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldmn7"]
+atlas = ExtResource("2_47264")
+region = Rect2(160, 480, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0lql"]
+atlas = ExtResource("2_47264")
+region = Rect2(0, 480, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpmio"]
+atlas = ExtResource("2_47264")
+region = Rect2(320, 480, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fet4t"]
+atlas = ExtResource("2_47264")
+region = Rect2(0, 480, 160, 160)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v2342"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q1r8m")
+"texture": SubResource("AtlasTexture_7d5yw")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldmn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0lql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpmio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fet4t")
 }],
 "loop": true,
 "name": &"default",
@@ -37,9 +70,37 @@ tracks/0/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death"]
+}
+
+[sub_resource type="Animation" id="Animation_pwqbq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death"]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_duug8"]
 _data = {
+"RESET": SubResource("Animation_pwqbq"),
 "death": SubResource("Animation_rlx56")
 }
 
@@ -58,6 +119,8 @@ shape = SubResource("CircleShape2D_h2fig")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v2342")
+animation = &"death"
+autoplay = "default"
 flip_h = true
 
 [node name="HealthBar" parent="." instance=ExtResource("3_44u51")]
