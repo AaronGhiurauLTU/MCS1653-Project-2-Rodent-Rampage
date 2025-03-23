@@ -78,7 +78,7 @@ public partial class Tower : Node2D
 			/* unadjusted represents angles between -180 to 180 degrees and adjusted represents angles between 0 and 360 degrees
 			 * what this code does is compares the adjusted versus unadjusted angles to select the pair of current and target rotations 
 			 * that have the smallest differences so the tower take the shortest path of rotation */
-			float unadjustedTargetRotation = Mathf.RadToDeg((firstEnemy.GetParent<Node2D>().ToGlobal(firstEnemy.Position) - GetParent<Node2D>().ToGlobal(Position)).Angle());
+			float unadjustedTargetRotation = Mathf.RadToDeg((firstEnemy.GetParent<Node2D>().ToGlobal(firstEnemy.Position) - GetParent<Node2D>().ToGlobal(Position)).Angle()) - 90;
 			
 			float adjustedTargetRotation = AdjustAngle(unadjustedTargetRotation);
 

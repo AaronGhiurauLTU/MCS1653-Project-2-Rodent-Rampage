@@ -23,6 +23,32 @@ public partial class Enemy : CharacterBody2D
 		healthBar.Position = new Vector2(-1 * healthBar.Size.X / 2, healthBar.Position.Y);
 	}
 
+	public void Destroy(bool slain = true)
+	{
+		if (slain)
+			gameManager.UpdateCash(cashDropped);
+
+		enemySpawner.enemiesRemaining--;
+
+		if (enemySpawner.enemiesRemaining == 0)
+		{
+			gameManager.gameWonMenu.Visible = true;
+			Engine.TimeScale = 0.0;
+			MusicManager.PlaySong(MusicManager.Song.Victory);
+		}
+		else if (isBoss)
+		{
+			enemySpawner.bossesRemaining--;
+			
+			if (enemySpawner.bossesRemaining <= 0)
+			{
+				MusicManager.PlaySong(MusicManager.Song.Background);
+			}
+		}
+
+		QueueFree();
+	}
+
 	public void TakeDamage(int damageAmount)
 	{
 		if (currentHealth <= 0)
@@ -39,26 +65,7 @@ public partial class Enemy : CharacterBody2D
 		// handle enemy death
 		if (currentHealth == 0)
 		{
-			gameManager.UpdateCash(cashDropped);
-			enemySpawner.enemiesRemaining--;
-
-			if (enemySpawner.enemiesRemaining == 0)
-			{
-				gameManager.gameWonMenu.Visible = true;
-				Engine.TimeScale = 0.0;
-				MusicManager.PlaySong(MusicManager.Song.Victory);
-			}
-			else if (isBoss)
-			{
-				enemySpawner.bossesRemaining--;
-				
-				if (enemySpawner.bossesRemaining <= 0)
-				{
-					MusicManager.PlaySong(MusicManager.Song.Background);
-				}
-			}
-
-			QueueFree();
+			Destroy();
 		}
 	}
 
@@ -89,7 +96,7 @@ public partial class Enemy : CharacterBody2D
 				else
 				{
 					cheese.Animation = $"{gameManager.currentHealth}";
-					QueueFree();
+					Destroy(false);
 				}
 			}
 		}
