@@ -6,7 +6,7 @@ public partial class GameManager : Node2D
 {
 	[Export] private TileMapLayer tileMap;
 	[Export] private TowerSelectMenu towerSelectMenu;
-	[Export] public Menu gameOverMenu, gameWonMenu;
+	[Export] public Menu gameOverMenu, gameWonMenu, pauseMenu;
 	[Export] private AnimationPlayer tower1ButtonAnim, tower2buttonAnim;
 	[Export] public AudioStreamPlayer biteSound;
 
@@ -14,7 +14,7 @@ public partial class GameManager : Node2D
 	[Export] private int startingCash = 3;
 
 	// the label that displays the current cash amount
-	[Export] private Label cashLabel;
+	[Export] public Label cashLabel, enemyCountLabel;
 	private int currentCash = 0;
 
 	// null indicates no tile is highlighted, store the tilemap coordinates of the tile the mouse is over
@@ -149,7 +149,7 @@ public partial class GameManager : Node2D
 		AddChild(newTower);
 
 		// make the tile unplaceable for where the new tower is
-		tileMap.SetCell((Vector2I)currentTileCoordinates, 1,  new Vector2I(3, 4));
+		tileMap.SetCell((Vector2I)currentTileCoordinates, 1,  new Vector2I(3, 0));
 
 		currentTileCoordinates = null;
 		currentTileAtlasCoordinates = null;
@@ -161,7 +161,18 @@ public partial class GameManager : Node2D
 	public override void _PhysicsProcess(double delta)
 	{
 		if (currentState != State.placing || Engine.TimeScale == 0)
+		{
+			if (Input.IsActionJustReleased("cancel"))
+			{
+				if (Engine.TimeScale == 0)
+				{
+					pauseMenu.Visible = false;
+					Engine.TimeScale = 1;
+					MusicManager.SetBusVolume("Music", 0);
+				}
+			}
 			return;
+		}
 
 		Vector2 mousePos = GetViewport().GetMousePosition();
 
@@ -209,6 +220,15 @@ public partial class GameManager : Node2D
 		if (Input.IsActionJustPressed("leftClick") && IsPlacable && canPlace)
 		{
 			ChangeState(State.selectingTower);
+		}
+		else if (Input.IsActionJustReleased("cancel"))
+		{
+			if (Engine.TimeScale != 0)
+			{
+				pauseMenu.Visible = true;
+				Engine.TimeScale = 0;
+				MusicManager.SetBusVolume("Music", -5);
+			}
 		}
 	}
 

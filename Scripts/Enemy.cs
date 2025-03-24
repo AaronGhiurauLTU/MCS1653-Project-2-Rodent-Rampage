@@ -27,6 +27,7 @@ public partial class Enemy : CharacterBody2D
 	public void Destroy(bool slain = true)
 	{
 		enemySpawner.enemiesRemaining--;
+		gameManager.enemyCountLabel.Text = "Rodents Remaining: " + enemySpawner.enemiesRemaining;
 
 		if (enemySpawner.enemiesRemaining == 0)
 		{

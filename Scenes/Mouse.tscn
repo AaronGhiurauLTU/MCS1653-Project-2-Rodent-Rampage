@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://boct4lmy8le45" path="res://Scenes/healthBar.tscn" id="3_44u51"]
 [ext_resource type="AudioStream" uid="uid://c6w6pw8h50bna" path="res://Audio/SFX/684866__faircashew__mouse-squek.mp3" id="4_io24p"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_h2fig"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_x5kc0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7d5yw"]
 atlas = ExtResource("2_47264")
@@ -27,7 +27,7 @@ region = Rect2(320, 480, 160, 160)
 atlas = ExtResource("2_47264")
 region = Rect2(0, 480, 160, 160)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_v2342"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nhib5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -169,10 +169,10 @@ healthBar = NodePath("HealthBar")
 animationPlayer = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_h2fig")
+shape = SubResource("CircleShape2D_x5kc0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_v2342")
+sprite_frames = SubResource("SpriteFrames_nhib5")
 animation = &"death"
 autoplay = "default"
 flip_h = true

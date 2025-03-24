@@ -49,6 +49,7 @@ Defeat music:
 
 	lose life falling 
 	https://mixkit.co/free-sound-effects/lose/
+	Mixkit Sound Effects Free License
 
 mouse squek.mp3 by FairCashew -- https://freesound.org/s/684866/ -- License: Creative Commons 0
 

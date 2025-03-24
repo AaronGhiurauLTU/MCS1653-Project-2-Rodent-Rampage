@@ -1,16 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3po4h4e5j77g"]
+[gd_scene load_steps=3 format=3 uid="uid://cjvgxqpvtkruw"]
 
-[ext_resource type="Script" path="res://Scripts/Menu.cs" id="1_la4k1"]
-[ext_resource type="LabelSettings" uid="uid://drpj04dar6b6g" path="res://LabelSettings.tres" id="2_ivnyq"]
+[ext_resource type="Script" path="res://Scripts/Menu.cs" id="1_vmvwt"]
+[ext_resource type="LabelSettings" uid="uid://drpj04dar6b6g" path="res://LabelSettings.tres" id="2_x2e6o"]
 
-[node name="GameOverMenu" type="Control"]
+[node name="PauseMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_la4k1")
+script = ExtResource("1_vmvwt")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -31,12 +31,17 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Game Over! Cheese Eaten!"
-label_settings = ExtResource("2_ivnyq")
+text = "Paused"
+label_settings = ExtResource("2_x2e6o")
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Continue"
 
 [node name="Replay" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Play Again"
+text = "Restart
+"
 
 [node name="Main Menu" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -47,6 +52,7 @@ layout_mode = 2
 text = "Quit
 "
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Continue" to="." method="OnContinuePressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Replay" to="." method="OnPlayPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Main Menu" to="." method="OnMainMenuPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="OnQuitPressed"]

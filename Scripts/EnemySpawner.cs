@@ -8,6 +8,7 @@ public partial class EnemySpawner : Node2D
 	public int nodeCount;
 	[Export] private string mouseScenePath = "res://Scenes/Mouse.tscn";
 	[Export] private string ratScenePath = "res://Scenes/Rat.tscn";
+	[Export] private GameManager gameManager;
 	private PackedScene mouseScene, ratScene;
 	[Export] private Timer nextEnemyTimer;
 
@@ -32,7 +33,7 @@ public partial class EnemySpawner : Node2D
 
 	private EnemyInformation nextEnemy;
 	private Queue<EnemyInformation> waves = new Queue<EnemyInformation>(new EnemyInformation[] {
-		new(1.5f, "mouse"),
+		new(5, "mouse"),
 		new(1.5f, "mouse"),
 		new(1.5f, "mouse"),
 		new(1.5f, "mouse"),
@@ -66,15 +67,75 @@ public partial class EnemySpawner : Node2D
 		new(0.5f, "mouse", true),
 		new(0.5f, "mouse", true),
 		new(0.5f, "mouse", true),
-		new(0.5f, "mouse", true),
-		new(0.5f, "mouse", true),
-		new(0.5f, "rat", true),
-		new(0.5f, "rat", true),
 		new(0.5f, "rat", true),
 
-		new(15, "mouse", true),
-
-		new(7, "mouse")
+		new(8, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(2f, "rat"),
+		new(2f, "rat"),
+		new(2f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(2f, "rat"),
+		new(2f, "rat"),
+		new(2f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "mouse"),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
+		new(0.5f, "rat", true),
+		new(0, "mouse", true),
 	});
 
 	public override void _Ready()
@@ -93,6 +154,7 @@ public partial class EnemySpawner : Node2D
 		ratScene = GD.Load<PackedScene>(ratScenePath);
 
 		enemiesRemaining = waves.Count;
+		gameManager.enemyCountLabel.Text = "Rodents Remaining: " + enemiesRemaining;
 		GetNextEnemy();
 	}
 	private void GetNextEnemy()

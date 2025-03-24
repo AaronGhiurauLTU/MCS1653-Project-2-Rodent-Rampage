@@ -172,12 +172,12 @@ _data = {
 }
 
 [node name="Rat" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite", "healthBar", "animationPlayer")]
-z_index = 5
+z_index = 6
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
 script = ExtResource("1_ypu2t")
 speed = 160.0
-maxHealth = 10
+maxHealth = 20
 animatedSprite = NodePath("AnimatedSprite2D")
 healthBar = NodePath("HealthBar")
 cashDropped = 3
