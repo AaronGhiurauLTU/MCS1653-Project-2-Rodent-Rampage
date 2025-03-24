@@ -29,7 +29,7 @@ region = Rect2(320, 0, 160, 160)
 atlas = ExtResource("1_cgu4h")
 region = Rect2(0, 0, 160, 160)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ocvnk"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_3o3f2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -60,10 +60,10 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpk6p"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pvm22"]
 size = Vector2(288, 260)
 
-[sub_resource type="Animation" id="Animation_c4eo4"]
+[sub_resource type="Animation" id="Animation_xpj3p"]
 resource_name = "Attack"
 length = 0.5
 tracks/0/type = "value"
@@ -122,7 +122,7 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_yf0vc"]
+[sub_resource type="Animation" id="Animation_wk4kw"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -149,10 +149,10 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wdlsd"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f3tly"]
 _data = {
-"Attack": SubResource("Animation_c4eo4"),
-"RESET": SubResource("Animation_yf0vc")
+"Attack": SubResource("Animation_xpj3p"),
+"RESET": SubResource("Animation_wk4kw")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n4ixi"]
@@ -163,7 +163,7 @@ region = Rect2(0, 320, 160, 160)
 atlas = ExtResource("1_cgu4h")
 region = Rect2(160, 320, 160, 160)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_u3ul1"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_giidg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -177,14 +177,14 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_atbjg"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_spm5h"]
 radius = 10.2478
 
 [node name="Cat" type="AnimatedSprite2D" node_paths=PackedStringArray("attackAnimationPlayer", "attackCooldownTimer", "attackSound")]
 z_index = 4
 position = Vector2(0, 1)
 scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_ocvnk")
+sprite_frames = SubResource("SpriteFrames_3o3f2")
 animation = &"attack"
 autoplay = "default"
 frame = 1
@@ -200,20 +200,20 @@ attackSound = NodePath("AttackSound")
 position = Vector2(0, 124)
 
 [node name="CollisionShape2D" parent="DamageArea" index="0"]
-shape = SubResource("RectangleShape2D_dpk6p")
+shape = SubResource("RectangleShape2D_pvm22")
 disabled = true
 
 [node name="AttackAnimationPlayer" type="AnimationPlayer" parent="DamageArea"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_wdlsd")
+"": SubResource("AnimationLibrary_f3tly")
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DamageArea"]
 visible = false
 position = Vector2(-16, 92)
 scale = Vector2(1.89797, 1.89797)
-sprite_frames = SubResource("SpriteFrames_u3ul1")
+sprite_frames = SubResource("SpriteFrames_giidg")
 
 [node name="DetectionRadius" type="Area2D" parent="."]
 position = Vector2(0, -2)
@@ -221,7 +221,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
 scale = Vector2(25, 25)
-shape = SubResource("CircleShape2D_atbjg")
+shape = SubResource("CircleShape2D_spm5h")
 
 [node name="AttackCooldown" type="Timer" parent="."]
 

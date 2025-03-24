@@ -258,6 +258,7 @@ wait_time = 2.0
 
 [node name="AttackSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_l60xs")
+volume_db = -5.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="DetectionRadius" to="." method="OnRangeEntered"]

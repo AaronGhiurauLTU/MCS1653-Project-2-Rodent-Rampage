@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://d0731hjlap5de" path="res://Audio/Music/mixkit-lose-life-falling-2029.wav" id="5_gw8ix"]
 
 [node name="MusicManager" type="AudioStreamPlayer"]
-stream = ExtResource("1_finbu")
+stream = ExtResource("3_ddo0r")
 autoplay = true
 bus = &"Music"
 parameters/looping = true
