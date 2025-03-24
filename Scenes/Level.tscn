@@ -1,17 +1,13 @@
 [gd_scene load_steps=20 format=4 uid="uid://0d3f354e7xr1"]
-[gd_scene load_steps=20 format=4 uid="uid://0d3f354e7xr1"]
 
-[ext_resource type="PackedScene" uid="uid://cjvgxqpvtkruw" path="res://Scenes/PauseMenu.tscn" id="1_1ng4c"]
 [ext_resource type="PackedScene" uid="uid://cjvgxqpvtkruw" path="res://Scenes/PauseMenu.tscn" id="1_1ng4c"]
 [ext_resource type="PackedScene" uid="uid://c3po4h4e5j77g" path="res://Scenes/GameOverMenu.tscn" id="1_cum67"]
 [ext_resource type="PackedScene" uid="uid://cihcgbs65akgc" path="res://Scenes/GameWonMenu.tscn" id="1_d46y3"]
-[ext_resource type="Texture2D" uid="uid://boilwqvt2qh2r" path="res://Sprites/tilemap.png" id="2_ammx6"]
 [ext_resource type="Texture2D" uid="uid://boilwqvt2qh2r" path="res://Sprites/tilemap.png" id="2_ammx6"]
 [ext_resource type="PackedScene" uid="uid://6a4o37635tsy" path="res://Scenes/TowerSelectMenu.tscn" id="2_nxtxe"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="3_ru48m"]
 [ext_resource type="PackedScene" uid="uid://ijf20yj6w2wm" path="res://Scenes/EnemySpawner.tscn" id="4_04na6"]
 [ext_resource type="AudioStream" uid="uid://d3dtgqwtbsfjp" path="res://Audio/SFX/632231__audacitier__biting-apple-2.mp3" id="7_qnyqo"]
-[ext_resource type="LabelSettings" uid="uid://drpj04dar6b6g" path="res://LabelSettings.tres" id="8_4v3lg"]
 [ext_resource type="LabelSettings" uid="uid://drpj04dar6b6g" path="res://LabelSettings.tres" id="8_4v3lg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ise3"]
@@ -22,7 +18,6 @@ texture_region_size = Vector2i(160, 160)
 1:0/0 = 0
 1:0/0/custom_data_0 = "Background"
 0:1/0 = 0
-0:1/0/custom_data_0 = "Placeable"
 0:1/0/custom_data_0 = "Placeable"
 4:4/0 = 0
 3:4/0 = 0
@@ -43,12 +38,6 @@ texture_region_size = Vector2i(160, 160)
 4:1/0 = 0
 4:3/0 = 0
 4:0/0 = 0
-1:4/0 = 0
-0:4/0 = 0
-2:0/0 = 0
-2:0/0/custom_data_0 = "Path"
-3:0/0 = 0
-3:0/0/custom_data_0 = "NotPlaceable"
 1:4/0 = 0
 0:4/0 = 0
 2:0/0 = 0
@@ -144,14 +133,6 @@ offset_top = 301.0
 offset_right = 482.5
 offset_bottom = 301.0
 
-[node name="PauseMenu" parent="." instance=ExtResource("1_1ng4c")]
-visible = false
-z_index = 100
-offset_left = 482.5
-offset_top = 301.0
-offset_right = 482.5
-offset_bottom = 301.0
-
 [node name="GameWonMenu" parent="." instance=ExtResource("1_d46y3")]
 visible = false
 z_index = 20
@@ -187,14 +168,8 @@ z_index = 12
 tile_map_data = PackedByteArray("AAAFAAIAAQAAAAEAAAD6//z/AQAAAAQAAAD7//z/AQABAAQAAAD8//z/AQACAAQAAAD9//z/AQADAAQAAAD+//z/AQAEAAQAAAD///z/AQAAAAQAAAAAAPz/AQABAAQAAAABAPz/AQACAAQAAAACAPz/AQADAAQAAAADAPz/AQAEAAQAAAAEAPz/AQAAAAQAAAAFAPz/AQABAAQAAAA=")
 tile_set = SubResource("TileSet_81ni4")
 
-[node name="TopBar" type="TileMapLayer" parent="VisibleLevel/TileMaps"]
-z_index = 12
-tile_map_data = PackedByteArray("AAAFAAIAAQAAAAEAAAD6//z/AQAAAAQAAAD7//z/AQABAAQAAAD8//z/AQACAAQAAAD9//z/AQADAAQAAAD+//z/AQAEAAQAAAD///z/AQAAAAQAAAAAAPz/AQABAAQAAAABAPz/AQACAAQAAAACAPz/AQADAAQAAAADAPz/AQAEAAQAAAAEAPz/AQAAAAQAAAAFAPz/AQABAAQAAAA=")
-tile_set = SubResource("TileSet_81ni4")
-
 [node name="Foreground" type="TileMapLayer" parent="VisibleLevel/TileMaps"]
 z_index = 1
-tile_map_data = PackedByteArray("AAD8//3/AQACAAAAAAD8//7/AQACAAAAAAD8////AQACAAAAAAD8/wAAAQACAAAAAAD8/wEAAQACAAAAAAD9/wEAAQACAAAAAAD+/wEAAQACAAAAAAD//wEAAQACAAAAAAD//wAAAQACAAAAAAD/////AQACAAAAAAD///7/AQACAAAAAAAAAP7/AQACAAAAAAABAP7/AQACAAAAAAACAP7/AQACAAAAAAACAP//AQACAAAAAAACAAAAAQACAAAAAAACAAEAAQACAAAAAAADAAEAAQACAAAAAAAEAAEAAQACAAAAAAAEAAAAAQACAAAAAAAEAP//AQACAAAAAAAFAP//AQACAAAAAAAFAAAAAQAAAAEAAAAFAAEAAQAAAAEAAAAFAAIAAQAAAAEAAAAEAAIAAQAAAAEAAAADAAIAAQAAAAEAAAACAAIAAQAAAAEAAAABAAIAAQAAAAEAAAABAAEAAQAAAAEAAAABAAAAAQAAAAEAAAABAP//AQAAAAEAAAAAAP//AQAAAAEAAAAAAAAAAQAAAAEAAAAAAAEAAQAAAAEAAAAAAAIAAQAAAAEAAAD//wIAAQAAAAEAAAD+/wIAAQAAAAEAAAD9/wIAAQAAAAEAAAD8/wIAAQAAAAEAAAD7/wIAAQAAAAEAAAD6/wIAAQAAAAEAAAD6/wEAAQAAAAEAAAD6/wAAAQAAAAEAAAD6////AQAAAAEAAAD6//7/AQAAAAEAAAD6//3/AQAAAAEAAAD7//3/AQAAAAEAAAD7//7/AQAAAAEAAAD7////AQAAAAEAAAD7/wAAAQAAAAEAAAD7/wEAAQAAAAEAAAD9/wAAAQAAAAEAAAD+/wAAAQAAAAEAAAD+////AQAAAAEAAAD+//7/AQAAAAEAAAD+//3/AQAAAAEAAAD9//3/AQAAAAEAAAD9//7/AQAAAAEAAAD9////AQAAAAEAAAD///3/AQAAAAEAAAAAAP3/AQAAAAEAAAABAP3/AQAAAAEAAAACAP3/AQAAAAEAAAADAP3/AQAAAAEAAAAEAP3/AQAAAAEAAAAFAP3/AQAAAAEAAAAFAP7/AQAAAAEAAAAEAP7/AQAAAAEAAAADAP7/AQAAAAEAAAADAP//AQAAAAEAAAADAAAAAQAAAAEAAAA=")
 tile_map_data = PackedByteArray("AAD8//3/AQACAAAAAAD8//7/AQACAAAAAAD8////AQACAAAAAAD8/wAAAQACAAAAAAD8/wEAAQACAAAAAAD9/wEAAQACAAAAAAD+/wEAAQACAAAAAAD//wEAAQACAAAAAAD//wAAAQACAAAAAAD/////AQACAAAAAAD///7/AQACAAAAAAAAAP7/AQACAAAAAAABAP7/AQACAAAAAAACAP7/AQACAAAAAAACAP//AQACAAAAAAACAAAAAQACAAAAAAACAAEAAQACAAAAAAADAAEAAQACAAAAAAAEAAEAAQACAAAAAAAEAAAAAQACAAAAAAAEAP//AQACAAAAAAAFAP//AQACAAAAAAAFAAAAAQAAAAEAAAAFAAEAAQAAAAEAAAAFAAIAAQAAAAEAAAAEAAIAAQAAAAEAAAADAAIAAQAAAAEAAAACAAIAAQAAAAEAAAABAAIAAQAAAAEAAAABAAEAAQAAAAEAAAABAAAAAQAAAAEAAAABAP//AQAAAAEAAAAAAP//AQAAAAEAAAAAAAAAAQAAAAEAAAAAAAEAAQAAAAEAAAAAAAIAAQAAAAEAAAD//wIAAQAAAAEAAAD+/wIAAQAAAAEAAAD9/wIAAQAAAAEAAAD8/wIAAQAAAAEAAAD7/wIAAQAAAAEAAAD6/wIAAQAAAAEAAAD6/wEAAQAAAAEAAAD6/wAAAQAAAAEAAAD6////AQAAAAEAAAD6//7/AQAAAAEAAAD6//3/AQAAAAEAAAD7//3/AQAAAAEAAAD7//7/AQAAAAEAAAD7////AQAAAAEAAAD7/wAAAQAAAAEAAAD7/wEAAQAAAAEAAAD9/wAAAQAAAAEAAAD+/wAAAQAAAAEAAAD+////AQAAAAEAAAD+//7/AQAAAAEAAAD+//3/AQAAAAEAAAD9//3/AQAAAAEAAAD9//7/AQAAAAEAAAD9////AQAAAAEAAAD///3/AQAAAAEAAAAAAP3/AQAAAAEAAAABAP3/AQAAAAEAAAACAP3/AQAAAAEAAAADAP3/AQAAAAEAAAAEAP3/AQAAAAEAAAAFAP3/AQAAAAEAAAAFAP7/AQAAAAEAAAAEAP7/AQAAAAEAAAADAP7/AQAAAAEAAAADAP//AQAAAAEAAAADAAAAAQAAAAEAAAA=")
 tile_set = SubResource("TileSet_81ni4")
 
@@ -215,7 +190,6 @@ towerSelectMenu = NodePath("../TowerSelectMenu")
 gameOverMenu = NodePath("../GameOverMenu")
 gameWonMenu = NodePath("../GameWonMenu")
 pauseMenu = NodePath("../PauseMenu")
-pauseMenu = NodePath("../PauseMenu")
 tower1ButtonAnim = NodePath("../TowerSelectMenu/MarginContainer/VBoxContainer/Tower1/AnimationPlayer")
 tower2buttonAnim = NodePath("../TowerSelectMenu/MarginContainer/VBoxContainer/Tower2/AnimationPlayer")
 biteSound = NodePath("BiteSound")
@@ -225,7 +199,6 @@ enemyCountLabel = NodePath("../TopBar/Enemy Count")
 
 [node name="BiteSound" type="AudioStreamPlayer" parent="GameManager"]
 stream = ExtResource("7_qnyqo")
-volume_db = 7.0
 volume_db = 7.0
 bus = &"SFX"
 
@@ -309,7 +282,6 @@ label_settings = ExtResource("8_4v3lg")
 horizontal_alignment = 2
 
 [node name="Background" type="Sprite2D" parent="TopBar"]
-visible = false
 visible = false
 position = Vector2(480, 30)
 scale = Vector2(3.75, 60)

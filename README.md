@@ -12,16 +12,21 @@
 # Required ReadMe Info for ALL MCS1653 Projects
 * **Project**   - Project 2 Tower Defense: Rodent Rampage
 * **Your Name** - Aaron Ghiurau
-* **Date**      - 
+* **Date**      - 03/23/2025
 
 <br>
 
 1. **What are the controls to your game? How do we play?**
 
+Mouse for menu navigation and placing towers. 
+
+Escape to pause and unpause.
+
 <br>
 
 2. **What creative additions did you make? How can we find them?**
 
+All art was drawn by me. The owl does high damage but has a low area of attack making it effective for rats but not mice. Cats have a larger area attack making it more effective against mice to encourage using both types of towers.
 
 <br>
 
@@ -65,11 +70,13 @@ Simple Slash Attack Sound by BeezleFM -- https://freesound.org/s/518883/ -- Lice
 
 4. **Did you receive help from anyone outside this class?** <br> (list their names and what they helped with)
 
+No
 
 <br>
 
 5. **Did you get help from any AI Code Assistants?** <br> (Tell us which .cs file to look in for the citation and describe what you learned)
 
+No
 
 <br>
 
@@ -81,11 +88,13 @@ Detecting where the mouse is relative to tilemap: https://www.reddit.com/r/godot
 
 7. **What trouble did you have with this project?**
 
+The most difficult feature to implement was the tile management. There were many issues related to mouse position and scaling of nodes causing undesired behavior.
 
 <br>
 
 8. **Is there anything else we should know?**
 
+No
 
 <br><br><br><br><br>
 
