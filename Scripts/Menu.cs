@@ -4,7 +4,14 @@ using System;
 public partial class Menu : Control
 {
 	[Export] private MarginContainer instructionsContainer, mainMenuContainer;
-	[Export] private GameManager gameManager;
+
+	public override void _Ready()
+	{
+		if (Name == "MainMenu")
+		{
+			MusicManager.PlaySong(MusicManager.Song.Background);
+		}
+	}
 	private void OnPlayPressed()
 	{
 		Engine.TimeScale = 1;

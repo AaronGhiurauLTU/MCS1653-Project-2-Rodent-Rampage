@@ -11,7 +11,7 @@ public partial class MusicManager : AudioStreamPlayer
 		Defeat
 	}
 	private static MusicManager instance;
-	private static Song currentSong;
+	private static Song currentSong = Song.Background;
 	[Export] private AudioStream backgroundMusic, bossMusic, victoryMusic, defeatMusic;
 
 	// Called when the node enters the scene tree for the first time.
